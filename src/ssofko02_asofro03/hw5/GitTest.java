@@ -2,10 +2,10 @@ package ssofko02_asofro03.hw5;
 
 public class GitTest {
 	public static void main(String args[]) {
-		System.out.print("Hi are you");
-		System.out.println("Hi this is the other ou");
-		System.out.print("THis is also me editing");
+		System.out.println("Hi are you");
+		
+		System.out.println("THis is also me editing");
 		
 	}
-
+//but wait theres more work happening here
 }
