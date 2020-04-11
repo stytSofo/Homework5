@@ -4,7 +4,7 @@ import edu.princeton.cs.introcs.StdOut;
 
 public class GitTest {
 	public static void main(String args[]) {
-		StdOut.print();
+		StdOut.print("HI");
 		//some code here to
 		// im doing work witout notice ahahahah
 
