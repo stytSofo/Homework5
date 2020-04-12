@@ -28,7 +28,7 @@ public class Grid {
 		}
 	}
 	
-	private boolean canMoveUp(People p) {
+	private boolean canMoveUp(People p) {//pls commit
 		int X = (int) p.getPosition().getX();
 		int Y = (int) p.getPosition().getY();
 		
