@@ -44,6 +44,11 @@ public class People {
 	public Point getPosition() {
 		return position;
 	}
+	
+	public void changePosition(double dx, double dy) {
+		position.translate(dx, dy);
+		//thoreis to?
+	}
 
 	public void Infect() {
 		infected = true;
