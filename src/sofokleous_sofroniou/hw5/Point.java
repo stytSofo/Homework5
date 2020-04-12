@@ -1,4 +1,4 @@
-package ssofko02_asofro03.hw5;
+package sofokleous_sofroniou.hw5;
 
 import edu.princeton.cs.introcs.StdOut;
 
