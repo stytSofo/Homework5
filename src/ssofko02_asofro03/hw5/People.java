@@ -1,5 +1,7 @@
 package ssofko02_asofro03.hw5;
 
+import edu.princeton.cs.introcs.StdOut;
+
 public class People {
 	private boolean infected;
 	private Point position;
@@ -54,6 +56,7 @@ public class People {
 	}
 	
 	
-	// eyyyyyyyyyyyyyyy ur gay
-	//HAHA not
+	public static void main() {
+		StdOut.print("HI");
+	}
 }
