@@ -52,4 +52,7 @@ public class People {
 	public double getProbGetInfection() {
 		return probGetInfection;
 	}
+	
+	
+	// eyyyyyyyyyyyyyyy ur gay
 }
