@@ -23,6 +23,8 @@ public class Point {
 		y += dy;
 
 	}
+	
+	
 
 	public boolean same(Point p1) {
 		return this.x == p1.x && this.y == p1.y;
