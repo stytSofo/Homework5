@@ -18,14 +18,10 @@ public class Point {
 	}
 
 	public void translate(double dx, double dy) {
-
 		x += dx;
 		y += dy;
-
 	}
 	
-	
-
 	public boolean same(Point p1) {
 		return this.x == p1.x && this.y == p1.y;
 	}
@@ -37,9 +33,8 @@ public class Point {
 	public static void toString(Point tab[]) {
 		for(int i=0;i<tab.length;i++)
 			StdOut.println(tab[i].toString());
-		
-		
 	}
+	
 	public double getY() {
 		return y;
 	}
@@ -47,5 +42,4 @@ public class Point {
 		return x;
 	}
  
-	//i love u
 }
