@@ -1,5 +1,8 @@
 package sofokleous_sofroniou.hw5;
 
+
+//Whatcha doin? 
+
 public class Grid {
 
 	private Cell[][] grid;
@@ -18,6 +21,7 @@ public class Grid {
 		people= new People[population];
 		
 		for(int i=0; i<infectedPopulation; i++) {
+			position=findPosition;
 			people[i]=new People(true, position,  probToHaveProtection,  probGiveInfectionWithProtection,
 					 probGiveInfectionWithoutProtection,  probGetInfectionWithProtection,
 					 probGetInfectionWithoutProtection,  probToBeImmune);
