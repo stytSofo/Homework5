@@ -101,7 +101,7 @@ public class Grid {
 		return true;
 	}
 	
-	private boolean canMoveDiagUpLeft(People p) {//pls commit
+	private boolean canMoveDiagUpLeft(People p) {
 		int X = (int) p.getPosition().getX();
 		int Y = (int) p.getPosition().getY();
 		
