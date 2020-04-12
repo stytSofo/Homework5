@@ -14,16 +14,18 @@ public class People {
 			double probGiveInfectionWithoutProtection, double probGetInfectionWithProtection,
 			double probGetInfectionWithoutProtection, double probToBeImmune) {
 
+		this.position = position;
+		
 		if (Math.random() >= probToBeImmune) {
 			this.immune = true;
 			this.infected = false;
+			
 		} else {
 
 			this.immune = false;
 
 			this.infected = infected;
 
-			this.position = position;
 
 			if (Math.random() >= probToHaveProtection) {
 				this.hasProtection = true;
