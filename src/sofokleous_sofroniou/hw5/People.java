@@ -58,4 +58,8 @@ public class People {
 		return probGetInfection;
 	}
 	
+	public boolean isImmune() {
+		return this.immune;
+	}
+	
 }
