@@ -30,9 +30,7 @@ public class People {
 			immune=true;
 	}
 	
-	public void changePosition(double dX,double dY) {
-		this.position.translate(dX, dY);
-	}
+
 	
 	public Point getPosition() {
 		return position;
