@@ -56,7 +56,7 @@ public class People {
 	}
 	
 	
-	public static void main() {
+	public static void main(String args[]) {
 		StdOut.print("HI");
 	}
 }
