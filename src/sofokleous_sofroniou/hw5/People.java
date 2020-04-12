@@ -8,6 +8,7 @@ public class People {
 	private boolean hasProtection;
 	private double probGiveInfection;
 	private double probGetInfection;
+	private boolean immune;
 	
 	
 	public People(Point P) {
@@ -25,6 +26,8 @@ public class People {
 			this.probGiveInfection=0.15;
 			this.probGetInfection=0.2;
 		}
+		if(Math.random()>0.9)
+			immune=true;
 	}
 	
 	public void changePosition(double dX,double dY) {
