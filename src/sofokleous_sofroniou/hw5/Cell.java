@@ -13,6 +13,15 @@ public class Cell {
 		this.probGiveInfection = 0;
 		this.lastOccuppied = 0;
 	}
+
+	public Cell(boolean occupied, boolean infected, double probGiveInfection, int lastOccuppied) {
+		
+		this.occupied = occupied;
+		this.infected = infected;
+		this.probGiveInfection = probGiveInfection;
+		this.lastOccuppied = lastOccuppied;
+		
+	}
 	
 	public boolean isOccupied() {
 		return occupied;
@@ -46,5 +55,4 @@ public class Cell {
 		this.lastOccuppied = lastOccuppied;
 	}
 
-	
 }
