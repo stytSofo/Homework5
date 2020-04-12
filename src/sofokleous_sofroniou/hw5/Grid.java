@@ -11,4 +11,27 @@ public class Grid {
 		this.grid=new Cell[N][N];
 	}
 	
+	public void move() {
+		for(int i =0;i<people.length;i++) {
+			int move_prob=(int)(Math.random()*8);
+			if(move_prob==0 ) {
+				
+				
+			}
+				
+		}
+	}
+	
+	private boolean canMoveUp(People p) {
+		int X = (int) p.getPosition().getX();
+		int Y = (int) p.getPosition().getY();
+		
+		if(Y+1>N)
+			return false;
+		if(grid[X][Y+1].isOccupied())
+			return false;
+		
+		return true;
+	}
+	
 }
