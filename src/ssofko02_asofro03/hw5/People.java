@@ -55,8 +55,4 @@ public class People {
 		return probGetInfection;
 	}
 	
-	
-	public static void main(String[] args) {
-		StdOut.print("HI");
-	}
 }
