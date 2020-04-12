@@ -9,6 +9,7 @@ public class Grid {
 	
 	public Grid(int N, int poppulation) {
 		this.grid=new Cell[N][N];
+		
 	}
 	
 	public void move() {
