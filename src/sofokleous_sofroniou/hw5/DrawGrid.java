@@ -2,7 +2,7 @@ package sofokleous_sofroniou.hw5;
 
 import edu.princeton.cs.introcs.StdDraw;
 
-public class Grid {
+public class DrawGrid {
 	static int I;
 	public static void DrawFrame(int N) {
 		int draw=N+1;
