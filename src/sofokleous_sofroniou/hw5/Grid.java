@@ -53,72 +53,131 @@ public class Grid {
 	}
 
 	public void move(int Time) {
-		for (int i = 0; i < people.length; i++) {
-			int move_prob = (int) (Math.random() * 8);
-			if (move_prob == 0) {
-
+		for(int i =0;i<people.length;i++) {
+			int move_prob=(int)(Math.random()*8);
+			if(move_prob==0 ) {
+				
+				
 			}
-
+				
 		}
 	}
-
-	private boolean canMoveUp(People p) {// pls commit
+	
+	private boolean canMoveUp(People p) {
 		int X = (int) p.getPosition().getX();
 		int Y = (int) p.getPosition().getY();
-
-		if (Y + 1 > N)
+		
+		if(Y+1>N)
 			return false;
-		if (grid[X][Y + 1].isOccupied())
+		if(grid[X][Y+1].isOccupied())
 			return false;
-
+		DrawGrid.removePeople(X, Y);
+		DrawGrid.drawPeople(X, Y+1);
 		return true;
 	}
-
-	private boolean canMoveDown(People p) {// pls commit
+	
+	private boolean canMoveDown(People p) {
 		int X = (int) p.getPosition().getX();
 		int Y = (int) p.getPosition().getY();
-
-		if (Y - 1 < 0)
+		
+		if(Y-1<0)
 			return false;
-		if (grid[X][Y - 1].isOccupied())
+		if(grid[X][Y-1].isOccupied())
 			return false;
-
+		
+		DrawGrid.removePeople(X, Y);
+		DrawGrid.drawPeople(X, Y-1);
+		
 		return true;
 	}
-
-	private boolean canMoveRight(People p) {// pls commit
+	
+	private boolean canMoveRight(People p) {
 		int X = (int) p.getPosition().getX();
 		int Y = (int) p.getPosition().getY();
-
-		if (X + 1 > N)
+		
+		if(X+1>N)
 			return false;
-		if (grid[X + 1][Y].isOccupied())
+		if(grid[X+1][Y].isOccupied())
 			return false;
-
+		
+		DrawGrid.removePeople(X, Y);
+		DrawGrid.drawPeople(X+1, Y);
+		
 		return true;
 	}
-
-	private boolean canMoveLeft(People p) {// pls commit
+	
+	private boolean canMoveLeft(People p) {
 		int X = (int) p.getPosition().getX();
 		int Y = (int) p.getPosition().getY();
-
-		if (X - 1 < 0)
+		
+		if(X-1<0)
 			return false;
-		if (grid[X - 1][Y].isOccupied())
+		if(grid[X-1][Y].isOccupied())
 			return false;
-
+		
+		DrawGrid.removePeople(X, Y);
+		DrawGrid.drawPeople(X-1, Y);
+		
 		return true;
 	}
-
+	
 	private boolean canMoveDiagUpLeft(People p) {
 		int X = (int) p.getPosition().getX();
 		int Y = (int) p.getPosition().getY();
-
-		if (X - 1 < 0 || Y + 1 > N)
+		
+		if(X-1<0 || Y+1>N)
 			return false;
-		if (grid[X - 1][Y].isOccupied())
+		if(grid[X-1][Y+1].isOccupied())
 			return false;
-
+		
+		DrawGrid.removePeople(X, Y);
+		DrawGrid.drawPeople(X-1, Y+1);
+		
+		return true;
+	}
+	
+	private boolean canMoveDiagUpRight(People p) {
+		int X = (int) p.getPosition().getX();
+		int Y = (int) p.getPosition().getY();
+		
+		if(X+1>N || Y+1>N)
+			return false;
+		if(grid[X+1][Y+1].isOccupied())
+			return false;
+		
+		DrawGrid.removePeople(X, Y);
+		DrawGrid.drawPeople(X+1, Y+1);
+		
+		return true;
+	}
+	
+	private boolean canMoveDiagDownRight(People p) {
+		int X = (int) p.getPosition().getX();
+		int Y = (int) p.getPosition().getY();
+		
+		if(X+1>N || Y-1<0)
+			return false;
+		if(grid[X+1][Y-1].isOccupied())
+			return false;
+		
+		DrawGrid.removePeople(X, Y);
+		DrawGrid.drawPeople(X+1, Y-1);
+		
+		return true;
+	}
+	
+	private boolean canMoveDiagDownLeft(People p) {
+		int X = (int) p.getPosition().getX();
+		int Y = (int) p.getPosition().getY();
+		
+		if(X-1<0 || Y-1<0)
+			return false;
+		if(grid[X-1][Y-1].isOccupied())
+			return false;
+		
+		DrawGrid.removePeople(X, Y);
+		DrawGrid.drawPeople(X-1, Y-1);
+		
 		return true;
 	}
 
