@@ -15,12 +15,7 @@ public class Grid {
 		
 
 	}
-	
-	public static void main(String args[]) {
-		//
-	}
-
-	
+		
 	public void move() {
 		for(int i =0;i<people.length;i++) {
 			int move_prob=(int)(Math.random()*8);
