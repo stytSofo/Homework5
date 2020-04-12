@@ -1,8 +1,5 @@
 package sofokleous_sofroniou.hw5;
 
-
-//Whatcha doin? 
-
 public class Grid {
 
 	private Cell[][] grid;
@@ -10,9 +7,10 @@ public class Grid {
 	private People[] people;
 	private int population;
 
+
 	public Grid(int N, int infectedPopulation, int population, double probToHaveProtection,
 			double probGiveInfectionWithProtection, double probGiveInfectionWithoutProtection,
-			double probGetInfectionWithProtection, double probGetInfectionWithoutProtection, double probToBeImmune) {
+			double probGetInfectionWithProtection, double probGetInfectionWithoutProtection, double probToBeImmune, double probCellToGiveInfection) {
 
 		this.N=N;
 		this.grid = new Cell[N][N];
@@ -21,22 +19,23 @@ public class Grid {
 		people= new People[population];
 		
 		for(int i=0; i<infectedPopulation; i++) {
-			position=findPosition;
+			Point position=findRandomPosition();
 			people[i]=new People(true, position,  probToHaveProtection,  probGiveInfectionWithProtection,
 					 probGiveInfectionWithoutProtection,  probGetInfectionWithProtection,
 					 probGetInfectionWithoutProtection,  probToBeImmune);
+			grid[(int) position.getX()][(int) position.getY()]= new Cell( true, true, probCellToGiveInfection, 0);
 		}
 		
 
 	}
 	
-	public Point findPosition() {
-		
+	public Point findRandomPosition() {
+		int x,y; 
 		do {
-			int x= (int)((Math.random())*this.N);
-			int y= (int)((Math.random())*this.N);
-		}
-		
+			x= (int)((Math.random())*this.N);
+			y= (int)((Math.random())*this.N);
+		}while(grid[x][y].isOccupied());
+		return new Point(x, y);
 	}
 		
 	public void move() {
