@@ -7,5 +7,4 @@ public class Grid {
 	private People[] people;
 	private int population;
 	
-
 }
