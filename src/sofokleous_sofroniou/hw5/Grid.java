@@ -38,7 +38,7 @@ public class Grid {
 		return new Point(x, y);
 	}
 		
-	public void move() {
+	public void move(int Time) {
 		for(int i =0;i<people.length;i++) {
 			int move_prob=(int)(Math.random()*8);
 			if(move_prob==0 ) {
@@ -58,8 +58,64 @@ public class Grid {
 		if(grid[X][Y+1].isOccupied())
 			return false;
 		
+		
 		return true;
 	}
+	
+	private boolean canMoveDown(People p) {//pls commit
+		int X = (int) p.getPosition().getX();
+		int Y = (int) p.getPosition().getY();
+		
+		if(Y-1<0)
+			return false;
+		if(grid[X][Y-1].isOccupied())
+			return false;
+		
+		
+		return true;
+	}
+	
+	private boolean canMoveRight(People p) {//pls commit
+		int X = (int) p.getPosition().getX();
+		int Y = (int) p.getPosition().getY();
+		
+		if(X+1>N)
+			return false;
+		if(grid[X+1][Y].isOccupied())
+			return false;
+		
+		
+		return true;
+	}
+	
+	private boolean canMoveLeft(People p) {//pls commit
+		int X = (int) p.getPosition().getX();
+		int Y = (int) p.getPosition().getY();
+		
+		if(X-1<0)
+			return false;
+		if(grid[X-1][Y].isOccupied())
+			return false;
+		
+		
+		return true;
+	}
+	
+	private boolean canMoveDiagUpLeft(People p) {//pls commit
+		int X = (int) p.getPosition().getX();
+		int Y = (int) p.getPosition().getY();
+		
+		if(X-1<0 || Y+1>N)
+			return false;
+		if(grid[X-1][Y].isOccupied())
+			return false;
+		
+		
+		return true;
+	}
+	
+
+}
 	
 
 }
