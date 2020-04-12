@@ -47,7 +47,6 @@ public class People {
 	
 	public void changePosition(double dx, double dy) {
 		position.translate(dx, dy);
-		//thoreis to?
 	}
 
 	public void Infect() {

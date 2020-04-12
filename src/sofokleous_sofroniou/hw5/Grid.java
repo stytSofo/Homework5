@@ -7,13 +7,32 @@ public class Grid {
 	private People[] people;
 	private int population;
 
-	public Grid(int N, int infectedPopulation, int poppulation, double probToHaveProtection,
+	public Grid(int N, int infectedPopulation, int population, double probToHaveProtection,
 			double probGiveInfectionWithProtection, double probGiveInfectionWithoutProtection,
 			double probGetInfectionWithProtection, double probGetInfectionWithoutProtection, double probToBeImmune) {
 
+		this.N=N;
 		this.grid = new Cell[N][N];
+		this.population=population;
+		
+		people= new People[population];
+		
+		for(int i=0; i<infectedPopulation; i++) {
+			people[i]=new People(true, position,  probToHaveProtection,  probGiveInfectionWithProtection,
+					 probGiveInfectionWithoutProtection,  probGetInfectionWithProtection,
+					 probGetInfectionWithoutProtection,  probToBeImmune);
+		}
 		
 
+	}
+	
+	public Point findPosition() {
+		
+		do {
+			int x= (int)((Math.random())*this.N);
+			int y= (int)((Math.random())*this.N);
+		}
+		
 	}
 		
 	public void move() {
