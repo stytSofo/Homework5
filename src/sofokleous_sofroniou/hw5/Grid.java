@@ -60,17 +60,33 @@ public class Grid {
 			
 			int move_prob=(int)(Math.random()*8);
 			
-			if(move_prob==0 && canMoveUp(people[i])) {
-				Infect(X,Y,people[i]);
+			
+			if(move_prob==0 && canMoveUp(people[i].getPosition())) {
+				
+				grid[X][Y].setOccupied(false);
+				people[i].changePosition(0,1);
+				grid[X][Y+1].setOccupied(true);
+				if(people[i].isImmune())
+					break;
+				else if (people[i].isInfected()) {
+					grid[X][Y+1].setInfected(true);
+					grid[X][Y+1].setLastOccuppied(Time);
+				}
+				else {
+					if(infectedNearby(people[i].getPosition())) {
+						
+					}
+					
+				}
 				
 			}
 				
 		}
 	}
 	
-	private boolean canMoveUp(People p) {
-		int X = (int) p.getPosition().getX();
-		int Y = (int) p.getPosition().getY();
+	private boolean canMoveUp(Point p) {
+		int X = (int) p.getX();
+		int Y = (int) p.getY();
 		
 		if(Y+1>N)
 			return false;
@@ -83,9 +99,9 @@ public class Grid {
 		return true;
 	}
 	
-	private boolean canMoveDown(People p) {
-		int X = (int) p.getPosition().getX();
-		int Y = (int) p.getPosition().getY();
+	private boolean canMoveDown(Point p) {
+		int X = (int) p.getX();
+		int Y = (int) p.getY();
 		
 		if(Y-1<0)
 			return false;
@@ -98,9 +114,9 @@ public class Grid {
 		return true;
 	}
 	
-	private boolean canMoveRight(People p) {
-		int X = (int) p.getPosition().getX();
-		int Y = (int) p.getPosition().getY();
+	private boolean canMoveRight(Point p) {
+		int X = (int) p.getX();
+		int Y = (int) p.getY();
 		
 		if(X+1>N)
 			return false;
@@ -113,9 +129,9 @@ public class Grid {
 		return true;
 	}
 	
-	private boolean canMoveLeft(People p) {
-		int X = (int) p.getPosition().getX();
-		int Y = (int) p.getPosition().getY();
+	private boolean canMoveLeft(Point p) {
+		int X = (int) p.getX();
+		int Y = (int) p.getY();
 		
 		if(X-1<0)
 			return false;
@@ -128,9 +144,9 @@ public class Grid {
 		return true;
 	}
 	
-	private boolean canMoveDiagUpLeft(People p) {
-		int X = (int) p.getPosition().getX();
-		int Y = (int) p.getPosition().getY();
+	private boolean canMoveDiagUpLeft(Point p) {
+		int X = (int) p.getX();
+		int Y = (int) p.getY();
 		
 		if(X-1<0 || Y+1>N)
 			return false;
@@ -143,9 +159,9 @@ public class Grid {
 		return true;
 	}
 	
-	private boolean canMoveDiagUpRight(People p) {
-		int X = (int) p.getPosition().getX();
-		int Y = (int) p.getPosition().getY();
+	private boolean canMoveDiagUpRight(Point p) {
+		int X = (int) p.getX();
+		int Y = (int) p.getY();
 		
 		if(X+1>N || Y+1>N)
 			return false;
@@ -158,9 +174,9 @@ public class Grid {
 		return true;
 	}
 	
-	private boolean canMoveDiagDownRight(People p) {
-		int X = (int) p.getPosition().getX();
-		int Y = (int) p.getPosition().getY();
+	private boolean canMoveDiagDownRight(Point p) {
+		int X = (int) p.getX();
+		int Y = (int) p.getY();
 		
 		if(X+1>N || Y-1<0)
 			return false;
@@ -173,9 +189,9 @@ public class Grid {
 		return true;
 	}
 	
-	private boolean canMoveDiagDownLeft(People p) {
-		int X = (int) p.getPosition().getX();
-		int Y = (int) p.getPosition().getY();
+	private boolean canMoveDiagDownLeft(Point p) {
+		int X = (int) p.getX();
+		int Y = (int) p.getY();
 		
 		if(X-1<0 || Y-1<0)
 			return false;
@@ -188,9 +204,14 @@ public class Grid {
 		return true;
 	}
 	
-	private void Infect(int X,int Y, People p) {
+	private boolean infectedNearby(Point P) {
+		int X = (int) P.getX();
+		int Y = (int) P.getY();
+		
+		if(grid[X+1][Y].isOccupied() && )
 		
 	}
+	
 	
 	public int getInfectedPeople() {
 		int c=0;

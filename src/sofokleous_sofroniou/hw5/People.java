@@ -72,5 +72,7 @@ public class People {
 	public boolean isImmune() {
 		return this.immune;
 	}
+	
+	
 
 }
