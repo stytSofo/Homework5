@@ -1,5 +1,7 @@
 package sofokleous_sofroniou.hw5;
 
+import edu.princeton.cs.introcs.StdDraw;
+
 public class Grid {
 
 	private Cell[][] grid;
@@ -25,6 +27,7 @@ public class Grid {
 					probGiveInfectionWithoutProtection, probGetInfectionWithProtection,
 					probGetInfectionWithoutProtection, probToBeImmune);
 			grid[(int) position.getX()][(int) position.getY()] = new Cell(true, true, probCellToGiveInfection, 0);
+			DrawGrid.drawPeople((int)people[i].getPosition().getX(), (int)(people[i].getPosition().getY()),StdDraw.GREEN);
 		}
 		
 		for (int i = infectedPopulation; i < population; i++) {
@@ -33,6 +36,7 @@ public class Grid {
 					probGiveInfectionWithoutProtection, probGetInfectionWithProtection,
 					probGetInfectionWithoutProtection, probToBeImmune);
 			grid[(int) position.getX()][(int) position.getY()] = new Cell(true, false, probCellToGiveInfection, 0);
+			DrawGrid.drawPeople((int)people[i].getPosition().getX(), (int)(people[i].getPosition().getY()));
 		}
 
 	}
@@ -73,7 +77,7 @@ public class Grid {
 					grid[X][Y+1].setLastOccuppied(Time);
 				}
 				else {
-					if(infectedNearby(people[i].getPosition())) {
+					if(near((int) people[i].getPosition().getX(),(int) people[i].getPosition().getY()).isInfected()) {
 						
 					}
 					
@@ -88,7 +92,7 @@ public class Grid {
 		int X = (int) p.getX();
 		int Y = (int) p.getY();
 		
-		if(Y+1>N)
+		if(Y+1>=N)
 			return false;
 		if(grid[X][Y+1].isOccupied())
 			return false;
@@ -118,7 +122,7 @@ public class Grid {
 		int X = (int) p.getX();
 		int Y = (int) p.getY();
 		
-		if(X+1>N)
+		if(X+1>=N)
 			return false;
 		if(grid[X+1][Y].isOccupied())
 			return false;
@@ -148,7 +152,7 @@ public class Grid {
 		int X = (int) p.getX();
 		int Y = (int) p.getY();
 		
-		if(X-1<0 || Y+1>N)
+		if(X-1<0 || Y+1>=N)
 			return false;
 		if(grid[X-1][Y+1].isOccupied())
 			return false;
@@ -163,7 +167,7 @@ public class Grid {
 		int X = (int) p.getX();
 		int Y = (int) p.getY();
 		
-		if(X+1>N || Y+1>N)
+		if(X+1>=N || Y+1>=N)
 			return false;
 		if(grid[X+1][Y+1].isOccupied())
 			return false;
@@ -178,7 +182,7 @@ public class Grid {
 		int X = (int) p.getX();
 		int Y = (int) p.getY();
 		
-		if(X+1>N || Y-1<0)
+		if(X+1>=N || Y-1<0)
 			return false;
 		if(grid[X+1][Y-1].isOccupied())
 			return false;
@@ -204,14 +208,16 @@ public class Grid {
 		return true;
 	}
 	
-	private boolean infectedNearby(Point P) {
-		int X = (int) P.getX();
-		int Y = (int) P.getY();
-		
-		if(grid[X+1][Y].isOccupied() && )
-		
-	}
 	
+	private People near(int X,int Y) {
+		
+		Point P = new Point(X,Y);
+		for(int i=0;i<people.length;i++) {
+			if(people[i].getPosition().equals(P))
+				return people[i];
+		}
+		return null;
+	}
 	
 	public int getInfectedPeople() {
 		int c=0;

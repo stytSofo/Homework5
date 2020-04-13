@@ -12,7 +12,7 @@ public class Covid {
 
 		StdOut.println("Give population: ");
 		int population = StdIn.readInt();
-		if (population > N) {
+		if (population > N*N) {
 			StdOut.println("Population can not be bigger than the area of the grid. Exiting Program.");
 			System.exit(0);
 		}
@@ -40,15 +40,17 @@ public class Covid {
 
 		StdOut.println("Give probability to get infected from objects: ");
 		double probCellToGiveInfection = StdIn.readDouble();
+		DrawGrid.DrawFrame(N);
 
 		Grid grid = new Grid(N, infectedPopulation, population, probToHaveProtection, probGiveInfectionWithProtection,
 				probGiveInfectionWithoutProtection, probGetInfectionWithProtection, probGetInfectionWithoutProtection,
 				probToBeImmune, probCellToGiveInfection);
-
-		for(int i=1; i<=120; i++)
-			grid.move(i);
 		
-		StdOut.println("Totaly infected people: "+grid.getInfectedPeople());
+
+	/*for(int i=1; i<=120; i++)
+			grid.move(i); */
+		
+		//StdOut.println("Totaly infected people: "+grid.getInfectedPeople());
 	}
 	
 }
