@@ -54,5 +54,7 @@ public class Cell {
 	public void setLastOccuppied(int lastOccuppied) {
 		this.lastOccuppied = lastOccuppied;
 	}
+	
+	
 
 }

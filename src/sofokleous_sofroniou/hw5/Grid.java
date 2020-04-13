@@ -54,9 +54,14 @@ public class Grid {
 
 	public void move(int Time) {
 		for(int i =0;i<people.length;i++) {
+			
+			int X = (int) people[i].getPosition().getX();
+			int Y = (int) people[i].getPosition().getY();
+			
 			int move_prob=(int)(Math.random()*8);
-			if(move_prob==0 ) {
-				
+			
+			if(move_prob==0 && canMoveUp(people[i])) {
+				Infect(X,Y,people[i]);
 				
 			}
 				
@@ -72,6 +77,8 @@ public class Grid {
 		if(grid[X][Y+1].isOccupied())
 			return false;
 		DrawGrid.removePeople(X, Y);
+		
+		
 		DrawGrid.drawPeople(X, Y+1);
 		return true;
 	}
@@ -181,12 +188,8 @@ public class Grid {
 		return true;
 	}
 	
-	public int getInfectedPeople() {
-		int counter=0;
-		for(int i=0; i<this.population; i++)
-			if(people[i].isInfected())
-				counter++;
-		return counter;
+	private void Infect(int X,int Y, People p) {
+		
 	}
 
 }
