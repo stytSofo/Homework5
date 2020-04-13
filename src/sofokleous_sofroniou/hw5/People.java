@@ -16,9 +16,11 @@ public class People {
 
 		this.position = position;
 		
-		if (Math.random() >= probToBeImmune) {
+		if (Math.random() <= probToBeImmune) {
 			this.immune = true;
 			this.infected = false;
+			probGiveInfection=0;
+			probGetInfection=0;
 			
 		} else {
 
@@ -27,7 +29,7 @@ public class People {
 			this.infected = infected;
 
 
-			if (Math.random() >= probToHaveProtection) {
+			if (Math.random() <= probToHaveProtection) {
 				this.hasProtection = true;
 				this.probGiveInfection = probGiveInfectionWithProtection;
 				this.probGetInfection = probGetInfectionWithProtection;
