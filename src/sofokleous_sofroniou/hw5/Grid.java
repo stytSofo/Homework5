@@ -191,5 +191,13 @@ public class Grid {
 	private void Infect(int X,int Y, People p) {
 		
 	}
+	
+	public int getInfectedPeople() {
+		int c=0;
+		for(int i=0; i<this.population; i++)
+			if(people[i].isInfected())
+				c++;
+		return c;
+	}
 
 }
