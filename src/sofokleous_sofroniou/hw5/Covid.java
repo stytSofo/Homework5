@@ -1,11 +1,14 @@
 package sofokleous_sofroniou.hw5;
 
+import edu.princeton.cs.introcs.StdDraw;
 import edu.princeton.cs.introcs.StdIn;
 import edu.princeton.cs.introcs.StdOut;
 
 public class Covid {
 
 	public static void main(String[] args) {
+	
+	
 
 		StdOut.println("Give grid length: ");
 		int N = StdIn.readInt();

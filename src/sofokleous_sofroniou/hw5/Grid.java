@@ -61,25 +61,22 @@ public class Grid {
 	public void move(int Time) {
 		for (int i = 0; i < people.length; i++) {
 
-			int X = (int) people[i].getPosition().getX();
-			int Y = (int) people[i].getPosition().getY();
-
 			int move_prob = (int) (Math.random() * 8);
 
 			if (move_prob == 0 && canMoveUp(people[i].getPosition())) {
 
-				grid[X][Y].setOccupied(false);
+				grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()].setOccupied(false);
 				people[i].changePosition(0, 1);
-				grid[X][Y + 1].setOccupied(true);
+				grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()].setOccupied(true);
 
 				if (people[i].isInfected()) {
-					grid[X][Y + 1].setInfected(true);
-					grid[X][Y + 1].setLastOccuppied(Time);
+					grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()].setInfected(true);
+					grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()].setLastOccuppied(Time);
 
 				}
 
-				if (grid[X][Y + 1].isInfected()) {
-					if (Math.random() <= grid[X][Y + 1].getProbGiveInfection()) {
+				if (grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()].isInfected()) {
+					if (Math.random() <= grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()].getProbGiveInfection()) {
 						people[i].Infect();
 
 					}
@@ -204,15 +201,7 @@ public class Grid {
 		return true;
 	}
 
-	private People near(int X, int Y) {
 
-		Point P = new Point(X, Y);
-		for (int i = 0; i < people.length; i++) {
-			if (people[i].getPosition().equals(P))
-				return people[i];
-		}
-		return null;
-	}
 
 	private void Draw(People P) {
 		if (P.isImmune())
@@ -222,6 +211,9 @@ public class Grid {
 			DrawGrid.drawPeople((int) P.getPosition().getX(), (int) P.getPosition().getY(), StdDraw.RED);
 		else
 			DrawGrid.drawPeople((int) P.getPosition().getX(), (int) P.getPosition().getY(), StdDraw.GREEN);
+		
+		
+		
 	}
 
 	public void Disinfect(int T) {
