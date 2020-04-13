@@ -27,7 +27,7 @@ public class Grid {
 					probGiveInfectionWithoutProtection, probGetInfectionWithProtection,
 					probGetInfectionWithoutProtection, probToBeImmune);
 			grid[(int) position.getX()][(int) position.getY()] = new Cell(true, true, probCellToGiveInfection, 0);
-			DrawGrid.drawPeople((int)people[i].getPosition().getX(), (int)(people[i].getPosition().getY()),StdDraw.GREEN);
+			DrawGrid.drawPeople((int)people[i].getPosition().getX(), (int)(people[i].getPosition().getY()),StdDraw.RED);
 		}
 		
 		for (int i = infectedPopulation; i < population; i++) {
@@ -70,18 +70,27 @@ public class Grid {
 				grid[X][Y].setOccupied(false);
 				people[i].changePosition(0,1);
 				grid[X][Y+1].setOccupied(true);
-				if(people[i].isImmune())
+				if(people[i].isImmune()) {
+					DrawGrid.drawPeople((int) people[i].getPosition().getX(), (int) people[i].getPosition().getY(), StdDraw.BLUE);
 					break;
+				}
 				else if (people[i].isInfected()) {
 					grid[X][Y+1].setInfected(true);
 					grid[X][Y+1].setLastOccuppied(Time);
+					DrawGrid.drawPeople((int) people[i].getPosition().getX(), (int) people[i].getPosition().getY(), StdDraw.RED);
+					break;
 				}
 				else {
-					if(near((int) people[i].getPosition().getX(),(int) people[i].getPosition().getY()).isInfected()) {
+					if(grid[X][Y+1].isInfected()) {
+						if(Math.random()<=grid[X][Y+1].getProbGiveInfection()) {
+							people[i].Infect();
+							DrawGrid.drawPeople((int) people[i].getPosition().getX(), (int) people[i].getPosition().getY(), StdDraw.RED);
+						}
 						
 					}
 					
 				}
+				DrawGrid.drawPeople((int) people[i].getPosition().getX(), (int) people[i].getPosition().getY(), StdDraw.BLACK);
 				
 			}
 				
@@ -99,7 +108,7 @@ public class Grid {
 		DrawGrid.removePeople(X, Y);
 		
 		
-		DrawGrid.drawPeople(X, Y+1);
+		
 		return true;
 	}
 	
@@ -113,7 +122,6 @@ public class Grid {
 			return false;
 		
 		DrawGrid.removePeople(X, Y);
-		DrawGrid.drawPeople(X, Y-1);
 		
 		return true;
 	}
@@ -128,7 +136,6 @@ public class Grid {
 			return false;
 		
 		DrawGrid.removePeople(X, Y);
-		DrawGrid.drawPeople(X+1, Y);
 		
 		return true;
 	}
@@ -143,7 +150,6 @@ public class Grid {
 			return false;
 		
 		DrawGrid.removePeople(X, Y);
-		DrawGrid.drawPeople(X-1, Y);
 		
 		return true;
 	}
@@ -158,7 +164,6 @@ public class Grid {
 			return false;
 		
 		DrawGrid.removePeople(X, Y);
-		DrawGrid.drawPeople(X-1, Y+1);
 		
 		return true;
 	}
@@ -173,7 +178,6 @@ public class Grid {
 			return false;
 		
 		DrawGrid.removePeople(X, Y);
-		DrawGrid.drawPeople(X+1, Y+1);
 		
 		return true;
 	}
@@ -188,7 +192,6 @@ public class Grid {
 			return false;
 		
 		DrawGrid.removePeople(X, Y);
-		DrawGrid.drawPeople(X+1, Y-1);
 		
 		return true;
 	}
@@ -203,7 +206,6 @@ public class Grid {
 			return false;
 		
 		DrawGrid.removePeople(X, Y);
-		DrawGrid.drawPeople(X-1, Y-1);
 		
 		return true;
 	}
@@ -219,9 +221,18 @@ public class Grid {
 		return null;
 	}
 	
+	public void Disinfect(int T) {
+		for(int i = 0;i<grid.length;i++)
+			for(int j=0;j<grid.length;j++)
+				if(T-grid[i][j].getLastOccuppied()==0) {
+					grid[i][j].setInfected(false);
+					grid[i][j].setLastOccuppied(0);
+				}
+	}
+	
 	public int getInfectedPeople() {
 		int c=0;
-		for(int i=0; i<this.population; i++)
+		for(int i=0; i<people.length; i++)
 			if(people[i].isInfected())
 				c++;
 		return c;

@@ -42,15 +42,18 @@ public class Covid {
 		double probCellToGiveInfection = StdIn.readDouble();
 		DrawGrid.DrawFrame(N);
 
-		Grid grid = new Grid(N, infectedPopulation, population, probToHaveProtection, probGiveInfectionWithProtection,
+		Grid grid = new Grid(N+1, infectedPopulation, population, probToHaveProtection, probGiveInfectionWithProtection,
 				probGiveInfectionWithoutProtection, probGetInfectionWithProtection, probGetInfectionWithoutProtection,
 				probToBeImmune, probCellToGiveInfection);
 		
 
-	/*for(int i=1; i<=120; i++)
-			grid.move(i); */
+	for(int i=1; i<=120; i++) {
+			grid.move(i); 
+			grid.Disinfect(i);
+			DrawGrid.waitFrame();
+	}
 		
-		//StdOut.println("Totaly infected people: "+grid.getInfectedPeople());
+		StdOut.println("Total infected people: "+grid.getInfectedPeople());
 	}
 	
 }
