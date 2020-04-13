@@ -47,7 +47,8 @@ public class Covid {
 
 		for(int i=1; i<=120; i++)
 			grid.move(i);
-				
+		
+		StdOut.println("Totaly infected people: "+grid.getInfectedPeople());
 	}
 	
 }

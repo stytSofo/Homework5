@@ -180,5 +180,13 @@ public class Grid {
 		
 		return true;
 	}
+	
+	public int getInfectedPeople() {
+		int counter=0;
+		for(int i=0; i<this.population; i++)
+			if(people[i].isInfected())
+				counter++;
+		return counter;
+	}
 
 }
