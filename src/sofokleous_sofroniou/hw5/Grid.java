@@ -86,6 +86,29 @@ public class Grid {
 				Draw(people[i]);
 
 			}
+			if (move_prob == 1 && canMoveDown(people[i].getPosition())) {
+
+				grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()].setOccupied(false);
+				people[i].changePosition(0, -1);
+				grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()].setOccupied(true);
+
+				if (people[i].isInfected()) {
+					grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()].setInfected(true);
+					grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()].setLastOccuppied(Time);
+
+				}
+
+				if (grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()].isInfected()) {
+					if (Math.random() <= grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()].getProbGiveInfection()) {
+						people[i].Infect();
+
+					}
+
+				}
+
+				Draw(people[i]);
+
+			}
 
 		}
 	}
