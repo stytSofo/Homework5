@@ -16,7 +16,7 @@ public class People {
 
 		this.position = position;
 		
-		if (Math.random() <= probToBeImmune) {
+		if (Math.random() < probToBeImmune) {
 			this.immune = true;
 			this.infected = false;
 			probGiveInfection=0;

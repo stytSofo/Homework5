@@ -41,13 +41,15 @@ public class Covid {
 		StdOut.println("Give probability to get infected from objects: ");
 		double probCellToGiveInfection = StdIn.readDouble();
 		DrawGrid.DrawFrame(N);
-
+		
+		DrawGrid.waitFrame();
+		
 		Grid grid = new Grid(N+1, infectedPopulation, population, probToHaveProtection, probGiveInfectionWithProtection,
 				probGiveInfectionWithoutProtection, probGetInfectionWithProtection, probGetInfectionWithoutProtection,
 				probToBeImmune, probCellToGiveInfection);
 		
 
-	for(int i=1; i<=120; i++) {
+	for(int i=1; i<120; i++) {
 			grid.move(i); 
 			grid.Disinfect(i);
 			DrawGrid.waitFrame();
