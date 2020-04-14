@@ -61,6 +61,7 @@ public class Grid {
 	}
 
 	public void move(int Time) {
+		Disinfect(Time);
 		for (int i = 0; i < people.length; i++) {
 
 			int move_prob = (int) (Math.random() * 8);
@@ -248,6 +249,7 @@ public class Grid {
 		if (P.isInfected()) {
 			grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()].setInfected(true);
 			grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()].setLastOccuppied(Time);
+			DrawGrid.drawCell((int) P.getPosition().getX(), (int) P.getPosition().getY(), StdDraw.LIGHT_GRAY);
 
 		}
 
@@ -349,6 +351,7 @@ public class Grid {
 				if (T - grid[i][j].getLastOccuppied() == 20) {
 					grid[i][j].setInfected(false);
 					grid[i][j].setLastOccuppied(0);
+					DrawGrid.drawCell(i, j, StdDraw.WHITE);
 				}
 	}
 

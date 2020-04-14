@@ -59,7 +59,7 @@ public class Covid {
 
 	for(int i=1; i<120; i++) {
 			grid.move(i); 
-			grid.Disinfect(i);
+			
 			DrawGrid.waitFrame();
 	}
 		
