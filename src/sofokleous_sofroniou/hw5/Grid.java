@@ -68,8 +68,9 @@ public class Grid {
 			for (int i = 0; i < people.length; i++) {
 
 				if(isThereEmptyCell(people[i]))
-					Point newPos = findNewPosition(people[i]);
+					Point newPoint = findNewPosition(people[i]);
 				
+					
 				
 				
 				
@@ -107,26 +108,26 @@ public class Grid {
 
 		Point newPosition = p.getPosition();
 		int direction = (int) (Math.random() * 8);
-		int tries=0;
 		boolean foundNewPosition=false;
 		
-		while((tries<8)&&!(foundNewPosition)) {
+		while(!(foundNewPosition)) {
+			
+			Point position=p.getPosition();
 			
 			switch (direction) {
-			case (0): newPosition.translate(0, 1);	break;
-			case (1): newPosition.translate(1, 1);	break;
-			case (2): newPosition.translate(1, 0);	break;
-			case (3): newPosition.translate(1, -1);	break;
-			case (4): newPosition.translate(0, -1);	break;
-			case (5): newPosition.translate(-1, -1);	break;
-			case (6): newPosition.translate(-1, 0);	break;
-			default: newPosition.translate(-1, 1);	break;
+				case (0): position.translate(0, 1);	break;
+				case (1): position.translate(1, 1);	break;
+				case (2): position.translate(1, 0);	break;
+				case (3): position.translate(1, -1);	break;
+				case (4): position.translate(0, -1);	break;
+				case (5): position.translate(-1, -1);	break;
+				case (6): position.translate(-1, 0);	break;
+				case (7): position.translate(-1, 1);	break;
 			}
 			
-			if(isEmpty(newPosition.getX(), newPosition.getY()))
+			if(isEmpty(position.getX(), position.getY()))
 				foundNewPosition=true;
 			else {
-				tries++;
 				if(direction==7)
 					direction=0;
 				else

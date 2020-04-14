@@ -47,6 +47,10 @@ public class People {
 		return position;
 	}
 	
+	public void setPosition(Point p) {
+		position=p;
+	}
+	
 	public void changePosition(double dx, double dy) {
 		position.translate(dx, dy);
 	}
