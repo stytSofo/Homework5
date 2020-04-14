@@ -55,7 +55,7 @@ public class Grid {
 		do {
 			x = (int) ((Math.random()) * this.N);
 			y = (int) ((Math.random()) * this.N);
-		} while (grid[x][y].isOccupied()!=-1);
+		} while (grid[x][y].isOccupied() != -1);
 		return new Point(x, y);
 	}
 
@@ -83,10 +83,9 @@ public class Grid {
 			} else {
 				MovePeople(people[i], Time);
 			}
-			
+
 			InfectByHuman(people[i]);
-			
-			
+
 			Draw(people[i]);
 
 		}
@@ -98,7 +97,7 @@ public class Grid {
 
 		if (Y + 1 >= N)
 			return false;
-		if (grid[X][Y + 1].isOccupied()!=-1)
+		if (grid[X][Y + 1].isOccupied() != -1)
 			return false;
 
 		grid[X][Y].setOccupied(-1);
@@ -114,7 +113,7 @@ public class Grid {
 
 		if (Y - 1 < 0)
 			return false;
-		if (grid[X][Y - 1].isOccupied()!=-1)
+		if (grid[X][Y - 1].isOccupied() != -1)
 			return false;
 
 		grid[X][Y].setOccupied(-1);
@@ -130,7 +129,7 @@ public class Grid {
 
 		if (X + 1 >= N)
 			return false;
-		if (grid[X + 1][Y].isOccupied()!=-1)
+		if (grid[X + 1][Y].isOccupied() != -1)
 			return false;
 
 		grid[X][Y].setOccupied(-1);
@@ -146,7 +145,7 @@ public class Grid {
 
 		if (X - 1 < 0)
 			return false;
-		if (grid[X - 1][Y].isOccupied()!=-1)
+		if (grid[X - 1][Y].isOccupied() != -1)
 			return false;
 
 		grid[X][Y].setOccupied(-1);
@@ -162,7 +161,7 @@ public class Grid {
 
 		if (X - 1 < 0 || Y + 1 >= N)
 			return false;
-		if (grid[X - 1][Y + 1].isOccupied()!=-1)
+		if (grid[X - 1][Y + 1].isOccupied() != -1)
 			return false;
 
 		grid[X][Y].setOccupied(-1);
@@ -178,7 +177,7 @@ public class Grid {
 
 		if (X + 1 >= N || Y + 1 >= N)
 			return false;
-		if (grid[X + 1][Y + 1].isOccupied()!=-1)
+		if (grid[X + 1][Y + 1].isOccupied() != -1)
 			return false;
 
 		grid[X][Y].setOccupied(-1);
@@ -194,7 +193,7 @@ public class Grid {
 
 		if (X + 1 >= N || Y - 1 < 0)
 			return false;
-		if (grid[X + 1][Y - 1].isOccupied()!=-1)
+		if (grid[X + 1][Y - 1].isOccupied() != -1)
 			return false;
 
 		grid[X][Y].setOccupied(-1);
@@ -210,7 +209,7 @@ public class Grid {
 
 		if (X - 1 < 0 || Y - 1 < 0)
 			return false;
-		if (grid[X - 1][Y - 1].isOccupied()!=-1)
+		if (grid[X - 1][Y - 1].isOccupied() != -1)
 			return false;
 
 		grid[X][Y].setOccupied(-1);
@@ -251,11 +250,11 @@ public class Grid {
 		}
 
 	}
-	
+
 	private void InfectByHuman(People P) {
-		
-		if(P.isInfected()) {
-			infectUp(p);
+
+		if (P.isInfected()) {
+			infectUp(P);
 			infectDown(p);
 			infectRight(p);
 			infectLeft(p);
@@ -263,10 +262,27 @@ public class Grid {
 			infectDiagDownRight(p);
 			infectDiagDownLeft(p);
 			infectDiagUpLeft(p);
-						
-				}
+
 		}
+	}
+
+	private void infectUp(People P) {
+		if (P.getPosition().getY() != N - 1) {
+			int n = grid[(int) P.getPosition().getX()][(int) P.getPosition().getY() + 1].isOccupied();
 			
+				if (n != -1) {
+					if (P.isInfected()) {
+						if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
+							people[n].Infect();
+					}
+					else if(people[n].isInfected()) {
+						if(Math.random()<P.getProbGetInfection()*people[n].getProbGiveInfection())
+							P.Infect();
+					}
+				}
+			}
+		}
+	
 
 	public void Disinfect(int T) {
 		for (int i = 0; i < grid.length; i++)
