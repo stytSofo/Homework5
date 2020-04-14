@@ -50,6 +50,10 @@ public class Point {
 		return this.x == p1.x && this.y == p1.y;
 	}
 
+	/**
+	 * This method returns the coordinates in String form.
+	 * @return "coordinate x: x coordinate y:  y"
+	 */
 	public String toString() {
 		return "coordinate x: " + x + " coordinate y: " + y;
 	}

@@ -22,6 +22,11 @@ public class Covid {
 
 		StdOut.println("Give infected population: ");
 		int infectedPopulation = StdIn.readInt();
+		
+		if (infectedPopulation > population) {
+			StdOut.println("Infected population can not be bigger than the population. Exiting Program.");
+			System.exit(0);
+		}
 
 		StdOut.println("Give probability of having protection: ");
 		double probToHaveProtection = StdIn.readDouble();
