@@ -55,7 +55,7 @@ public class Grid {
 		do {
 			x = (int) ((Math.random()) * this.N);
 			y = (int) ((Math.random()) * this.N);
-		} while (grid[x][y].isOccupied());
+		} while (grid[x][y].isOccupied()==-1);
 		return new Point(x, y);
 	}
 
@@ -94,10 +94,10 @@ public class Grid {
 
 		if (Y + 1 >= N)
 			return false;
-		if (grid[X][Y + 1].isOccupied())
+		if (grid[X][Y + 1].isOccupied()!=-1)
 			return false;
 
-		grid[X][Y].setOccupied(false);
+		grid[X][Y].setOccupied(-1);
 		DrawGrid.removePeople(X, Y);
 		p.changePosition(0, 1);
 
@@ -110,10 +110,10 @@ public class Grid {
 
 		if (Y - 1 < 0)
 			return false;
-		if (grid[X][Y - 1].isOccupied())
+		if (grid[X][Y - 1].isOccupied()!=-1)
 			return false;
 
-		grid[X][Y].setOccupied(false);
+		grid[X][Y].setOccupied(-1);
 		DrawGrid.removePeople(X, Y);
 		p.changePosition(0, -1);
 
@@ -126,10 +126,10 @@ public class Grid {
 
 		if (X + 1 >= N)
 			return false;
-		if (grid[X + 1][Y].isOccupied())
+		if (grid[X + 1][Y].isOccupied()!=-1)
 			return false;
 
-		grid[X][Y].setOccupied(false);
+		grid[X][Y].setOccupied(-1);
 		DrawGrid.removePeople(X, Y);
 		p.changePosition(1, 0);
 
@@ -142,10 +142,10 @@ public class Grid {
 
 		if (X - 1 < 0)
 			return false;
-		if (grid[X - 1][Y].isOccupied())
+		if (grid[X - 1][Y].isOccupied()!=-1)
 			return false;
 
-		grid[X][Y].setOccupied(false);
+		grid[X][Y].setOccupied(-1);
 		DrawGrid.removePeople(X, Y);
 		p.changePosition(-1, 0);
 
@@ -158,10 +158,10 @@ public class Grid {
 
 		if (X - 1 < 0 || Y + 1 >= N)
 			return false;
-		if (grid[X - 1][Y + 1].isOccupied())
+		if (grid[X - 1][Y + 1].isOccupied()!=-1)
 			return false;
 
-		grid[X][Y].setOccupied(false);
+		grid[X][Y].setOccupied(-1);
 		DrawGrid.removePeople(X, Y);
 		p.changePosition(-1, 1);
 
@@ -174,10 +174,10 @@ public class Grid {
 
 		if (X + 1 >= N || Y + 1 >= N)
 			return false;
-		if (grid[X + 1][Y + 1].isOccupied())
+		if (grid[X + 1][Y + 1].isOccupied()!=-1)
 			return false;
 
-		grid[X][Y].setOccupied(false);
+		grid[X][Y].setOccupied(-1);
 		DrawGrid.removePeople(X, Y);
 		p.changePosition(1, 1);
 
@@ -190,10 +190,10 @@ public class Grid {
 
 		if (X + 1 >= N || Y - 1 < 0)
 			return false;
-		if (grid[X + 1][Y - 1].isOccupied())
+		if (grid[X + 1][Y - 1].isOccupied()!=-1)
 			return false;
 
-		grid[X][Y].setOccupied(false);
+		grid[X][Y].setOccupied(-1);
 		DrawGrid.removePeople(X, Y);
 		p.changePosition(1, -1);
 
@@ -206,10 +206,10 @@ public class Grid {
 
 		if (X - 1 < 0 || Y - 1 < 0)
 			return false;
-		if (grid[X - 1][Y - 1].isOccupied())
+		if (grid[X - 1][Y - 1].isOccupied()!=-1)
 			return false;
 
-		grid[X][Y].setOccupied(false);
+		grid[X][Y].setOccupied(-1);
 		DrawGrid.removePeople(X, Y);
 		p.changePosition(-1, -1);
 
@@ -229,7 +229,7 @@ public class Grid {
 	}
 
 	private void MovePeople(People P, int Time) {
-		grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()].setOccupied(true);
+		grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()].setOccupied(P.getId());
 
 		if (P.isInfected()) {
 			grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()].setInfected(true);
