@@ -26,8 +26,8 @@ public class Grid {
 			Point position = findRandomPosition();
 			people[i] = new People(true, position, probToHaveProtection, probGiveInfectionWithProtection,
 					probGiveInfectionWithoutProtection, probGetInfectionWithProtection,
-					probGetInfectionWithoutProtection, 0);
-			grid[(int) position.getX()][(int) position.getY()] = new Cell(true, true, probCellToGiveInfection, 0);
+					probGetInfectionWithoutProtection, 0, i);
+			grid[(int) position.getX()][(int) position.getY()] = new Cell(i, true, probCellToGiveInfection, 0);
 			DrawGrid.drawPeople((int) people[i].getPosition().getX(), (int) (people[i].getPosition().getY()),
 					StdDraw.RED);
 		}
@@ -36,8 +36,8 @@ public class Grid {
 			Point position = findRandomPosition();
 			people[i] = new People(false, position, probToHaveProtection, probGiveInfectionWithProtection,
 					probGiveInfectionWithoutProtection, probGetInfectionWithProtection,
-					probGetInfectionWithoutProtection, probToBeImmune);
-			grid[(int) position.getX()][(int) position.getY()] = new Cell(true, false, probCellToGiveInfection, 0);
+					probGetInfectionWithoutProtection, probToBeImmune, i);
+			grid[(int) position.getX()][(int) position.getY()] = new Cell(i, false, probCellToGiveInfection, 0);
 			DrawGrid.drawPeople((int) people[i].getPosition().getX(), (int) (people[i].getPosition().getY()),
 					StdDraw.GREEN);
 		}
@@ -55,7 +55,7 @@ public class Grid {
 		do {
 			x = (int) ((Math.random()) * this.N);
 			y = (int) ((Math.random()) * this.N);
-		} while (grid[x][y].isOccupied()==-1);
+		} while (grid[x][y].isOccupied()!=-1);
 		return new Point(x, y);
 	}
 
