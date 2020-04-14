@@ -9,12 +9,14 @@ public class People {
 	private double probGiveInfection;
 	private double probGetInfection;
 	private boolean immune;
+	private int id;
 
 	public People(boolean infected, Point position, double probToHaveProtection, double probGiveInfectionWithProtection,
 			double probGiveInfectionWithoutProtection, double probGetInfectionWithProtection,
-			double probGetInfectionWithoutProtection, double probToBeImmune) {
+			double probGetInfectionWithoutProtection, double probToBeImmune, int id) {
 
 		this.position = position;
+		this.id=id;
 		
 		if (Math.random() < probToBeImmune) {
 			this.immune = true;
