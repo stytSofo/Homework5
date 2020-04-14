@@ -35,10 +35,8 @@ public class DrawGrid {
 	
 	
 	
-	public static void removePeople(int x,int y,Color C) {
-		
-		
-		StdDraw.setPenColor(C);
+	public static void removePeople(int x,int y) {
+		StdDraw.setPenColor(StdDraw.WHITE);
 		StdDraw.setPenRadius(1.2/I);
 		StdDraw.point(x+0.5, y+0.5);
 		
