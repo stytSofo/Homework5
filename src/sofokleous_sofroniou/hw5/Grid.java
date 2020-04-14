@@ -1,6 +1,7 @@
 package sofokleous_sofroniou.hw5;
 
 import edu.princeton.cs.introcs.StdDraw;
+import edu.princeton.cs.introcs.StdOut;
 
 public class Grid {
 
@@ -76,14 +77,15 @@ public class Grid {
 				}
 
 				if (grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()].isInfected()) {
-					if (Math.random() <= grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()].getProbGiveInfection()) {
+					if (Math.random() < grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()].getProbGiveInfection()) {
 						people[i].Infect();
+						StdOut.println("GridInfection");
 
 					}
 
 				}
 
-				Draw(people[i]);
+				
 
 			}
 			if (move_prob == 1 && canMoveDown(people[i].getPosition())) {
@@ -99,16 +101,19 @@ public class Grid {
 				}
 
 				if (grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()].isInfected()) {
-					if (Math.random() <= grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()].getProbGiveInfection()) {
+					if (Math.random() < grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()].getProbGiveInfection()) {
 						people[i].Infect();
+						StdOut.println("GridInfection");
 
 					}
+					
 
 				}
 
-				Draw(people[i]);
+				
 
 			}
+			Draw(people[i]);
 
 		}
 	}
@@ -230,8 +235,10 @@ public class Grid {
 		if (P.isImmune())
 			DrawGrid.drawPeople((int) P.getPosition().getX(), (int) P.getPosition().getY(), StdDraw.BLUE);
 		
-		else if (P.isInfected())
+		else if (P.isInfected()) {
 			DrawGrid.drawPeople((int) P.getPosition().getX(), (int) P.getPosition().getY(), StdDraw.RED);
+			StdOut.println("RED");
+		}
 		else
 			DrawGrid.drawPeople((int) P.getPosition().getX(), (int) P.getPosition().getY(), StdDraw.GREEN);
 		
@@ -242,7 +249,7 @@ public class Grid {
 	public void Disinfect(int T) {
 		for (int i = 0; i < grid.length; i++)
 			for (int j = 0; j < grid.length; j++)
-				if (T - grid[i][j].getLastOccuppied() == 0) {
+				if (T - grid[i][j].getLastOccuppied() == 20) {
 					grid[i][j].setInfected(false);
 					grid[i][j].setLastOccuppied(0);
 				}
