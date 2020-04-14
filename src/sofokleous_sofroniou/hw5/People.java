@@ -81,6 +81,8 @@ public class People {
 		return this.immune;
 	}
 	
-	
+	public int getId() {
+		return id;
+	}
 
 }
