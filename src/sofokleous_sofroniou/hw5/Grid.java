@@ -122,8 +122,10 @@ public class Grid {
 		return newPosition;
 	}
 
-	public boolean isEmpty(int x, int y) {
-		
+	public boolean isEmpty(double X, double Y) {
+		int x = (int)X;
+		int y= (int) Y;
+		return grid[x][y].isOccupied();
 	}
 	
 	
