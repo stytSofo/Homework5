@@ -59,6 +59,91 @@ public class Grid {
 		return new Point(x, y);
 	}
 
+	// dokimazo new move anna
+
+	public void move() {
+
+		for (int c = 0; c < 120; c++) {
+
+			for (int i = 0; i < people.length; i++) {
+
+				Point newPos = findNewPosition(people[i]);
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			} // for gia people
+
+		} // for 120
+
+	} // kleisimo method
+
+	public Point findNewPos(People p) {
+
+		Point newPosition = p.getPosition();
+		int direction = (int) (Math.random() * 8);
+		int tries=0;
+		boolean foundNewPosition=false;
+		
+		while((tries<8)&&!(foundNewPosition)) {
+			
+			switch (direction) {
+			case (0): newPosition.translate(0, 1);	break;
+			case (1): newPosition.translate(1, 1);	break;
+			case (2): newPosition.translate(1, 0);	break;
+			case (3): newPosition.translate(1, -1);	break;
+			case (4): newPosition.translate(0, -1);	break;
+			case (5): newPosition.translate(-1, -1);	break;
+			case (6): newPosition.translate(-1, 0);	break;
+			default: newPosition.translate(-1, 1);	break;
+			}
+			
+			if(isEmpty(newPosition.getX(), newPosition.getY()))
+				foundNewPosition=true;
+			else {
+				tries++;
+				if(direction==7)
+					direction=0;
+				else
+					direction++;
+			}
+			
+		}
+		return newPosition;
+	}
+
+	public boolean isEmpty(int x, int y) {
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// mexri dame, ta ipolipa en ta dika su pu kato
+
 	public void move(int Time) {
 		for (int i = 0; i < people.length; i++) {
 
@@ -72,20 +157,20 @@ public class Grid {
 
 				if (people[i].isInfected()) {
 					grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()].setInfected(true);
-					grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()].setLastOccuppied(Time);
+					grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()]
+							.setLastOccuppied(Time);
 
 				}
 
 				if (grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()].isInfected()) {
-					if (Math.random() < grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()].getProbGiveInfection()) {
+					if (Math.random() < grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()]
+							.getProbGiveInfection()) {
 						people[i].Infect();
 						StdOut.println("GridInfection");
 
 					}
 
 				}
-
-				
 
 			}
 			if (move_prob == 1 && canMoveDown(people[i].getPosition())) {
@@ -96,21 +181,20 @@ public class Grid {
 
 				if (people[i].isInfected()) {
 					grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()].setInfected(true);
-					grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()].setLastOccuppied(Time);
+					grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()]
+							.setLastOccuppied(Time);
 
 				}
 
 				if (grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()].isInfected()) {
-					if (Math.random() < grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()].getProbGiveInfection()) {
+					if (Math.random() < grid[(int) people[i].getPosition().getX()][(int) people[i].getPosition().getY()]
+							.getProbGiveInfection()) {
 						people[i].Infect();
 						StdOut.println("GridInfection");
 
 					}
-					
 
 				}
-
-				
 
 			}
 			Draw(people[i]);
@@ -229,21 +313,16 @@ public class Grid {
 		return true;
 	}
 
-
-
 	private void Draw(People P) {
 		if (P.isImmune())
 			DrawGrid.drawPeople((int) P.getPosition().getX(), (int) P.getPosition().getY(), StdDraw.BLUE);
-		
+
 		else if (P.isInfected()) {
 			DrawGrid.drawPeople((int) P.getPosition().getX(), (int) P.getPosition().getY(), StdDraw.RED);
 			StdOut.println("RED");
-		}
-		else
+		} else
 			DrawGrid.drawPeople((int) P.getPosition().getX(), (int) P.getPosition().getY(), StdDraw.GREEN);
-		
-		
-		
+
 	}
 
 	public void Disinfect(int T) {
