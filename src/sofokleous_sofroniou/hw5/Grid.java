@@ -230,7 +230,7 @@ public class Grid {
 
 		else if (P.isInfected()) {
 			DrawGrid.drawPeople((int) P.getPosition().getX(), (int) P.getPosition().getY(), StdDraw.RED);
-			StdOut.println("RED");
+			
 		} else
 			DrawGrid.drawPeople((int) P.getPosition().getX(), (int) P.getPosition().getY(), StdDraw.GREEN);
 
@@ -248,9 +248,9 @@ public class Grid {
 
 		if (grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()].isInfected()) {
 			if (Math.random() < grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()]
-					.getProbGiveInfection()) {
+					.getProbGiveInfection() && !P.isImmune()) {
 				P.Infect();
-				StdOut.println("GridInfection");
+				
 
 			}
 
