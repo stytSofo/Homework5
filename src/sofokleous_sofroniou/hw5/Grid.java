@@ -1,5 +1,6 @@
 package sofokleous_sofroniou.hw5;
 
+import java.awt.Color;
 import edu.princeton.cs.introcs.StdDraw;
 import edu.princeton.cs.introcs.StdOut;
 
@@ -224,10 +225,20 @@ public class Grid {
 			DrawGrid.drawPeople((int) P.getPosition().getX(), (int) P.getPosition().getY(), StdDraw.BLUE);
 
 		else if (P.isInfected()) {
-			DrawGrid.drawPeople((int) P.getPosition().getX(), (int) P.getPosition().getY(), StdDraw.RED);
-
-		} else
-			DrawGrid.drawPeople((int) P.getPosition().getX(), (int) P.getPosition().getY(), StdDraw.GREEN);
+			if(P.hasProtection())
+				DrawGrid.drawPeople((int) P.getPosition().getX(), (int) P.getPosition().getY(), StdDraw.PINK);
+			else
+				DrawGrid.drawPeople((int) P.getPosition().getX(), (int) P.getPosition().getY(), StdDraw.RED);
+			
+		} 
+		
+		else {
+			if(P.hasProtection())
+				DrawGrid.drawPeople((int) P.getPosition().getX(), (int) P.getPosition().getY(), StdDraw.GREEN);
+			else
+				DrawGrid.drawPeople((int) P.getPosition().getX(), (int) P.getPosition().getY());
+			
+		}
 
 	}
 
@@ -255,13 +266,13 @@ public class Grid {
 
 		if (P.isInfected()) {
 			infectUp(P);
-			infectDown(p);
-			infectRight(p);
-			infectLeft(p);
-			infectDiagUpRight(p);
-			infectDiagDownRight(p);
-			infectDiagDownLeft(p);
-			infectDiagUpLeft(p);
+			infectDown(P);
+			infectRight(P);
+			infectLeft(P);
+			/*infectDiagUpRight(P);
+			infectDiagDownRight(P);
+			infectDiagDownLeft(P);
+			infectDiagUpLeft(P);*/
 
 		}
 	}
@@ -269,6 +280,54 @@ public class Grid {
 	private void infectUp(People P) {
 		if (P.getPosition().getY() != N - 1) {
 			int n = grid[(int) P.getPosition().getX()][(int) P.getPosition().getY() + 1].isOccupied();
+			
+				if (n != -1) {
+					if (P.isInfected()) {
+						if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
+							people[n].Infect();
+					}
+					else if(people[n].isInfected()) {
+						if(Math.random()<P.getProbGetInfection()*people[n].getProbGiveInfection())
+							P.Infect();
+					}
+				}
+			}
+		}
+	private void infectDown(People P) {
+		if (P.getPosition().getY() != 0) {
+			int n = grid[(int) P.getPosition().getX()][(int) P.getPosition().getY() - 1].isOccupied();
+			
+				if (n != -1) {
+					if (P.isInfected()) {
+						if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
+							people[n].Infect();
+					}
+					else if(people[n].isInfected()) {
+						if(Math.random()<P.getProbGetInfection()*people[n].getProbGiveInfection())
+							P.Infect();
+					}
+				}
+			}
+		}
+	private void infectRight(People P) {
+		if (P.getPosition().getX() != N - 1) {
+			int n = grid[(int) P.getPosition().getX()+1][(int) P.getPosition().getY()].isOccupied();
+			
+				if (n != -1) {
+					if (P.isInfected()) {
+						if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
+							people[n].Infect();
+					}
+					else if(people[n].isInfected()) {
+						if(Math.random()<P.getProbGetInfection()*people[n].getProbGiveInfection())
+							P.Infect();
+					}
+				}
+			}
+		}
+	private void infectLeft(People P) {
+		if (P.getPosition().getX() != 0) {
+			int n = grid[(int) P.getPosition().getX()-1][(int) P.getPosition().getY()].isOccupied();
 			
 				if (n != -1) {
 					if (P.isInfected()) {
