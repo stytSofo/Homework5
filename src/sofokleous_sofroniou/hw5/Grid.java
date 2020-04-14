@@ -83,6 +83,10 @@ public class Grid {
 			} else {
 				MovePeople(people[i], Time);
 			}
+			
+			InfectByHuman(people[i]);
+			
+			
 			Draw(people[i]);
 
 		}
@@ -246,6 +250,14 @@ public class Grid {
 
 		}
 
+	}
+	
+	private void InfectByHuman(People P) {
+		if(P.isInfected()) {
+			if()
+		}
+			
+		
 	}
 
 	public void Disinfect(int T) {
