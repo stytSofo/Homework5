@@ -249,7 +249,7 @@ public class Grid {
 		if (P.isInfected()) {
 			grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()].setInfected(true);
 			grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()].setLastOccuppied(Time);
-			DrawGrid.drawCell((int) P.getPosition().getX(), (int) P.getPosition().getY(), StdDraw.LIGHT_GRAY);
+			
 
 		}
 
@@ -271,10 +271,10 @@ public class Grid {
 			infectDown(P);
 			infectRight(P);
 			infectLeft(P);
-			/*infectDiagUpRight(P);
-			infectDiagDownRight(P);
-			infectDiagDownLeft(P);
-			infectDiagUpLeft(P);*/
+			infectDownRight(P);
+			infectUpRight(P);
+			infectDownLeft(P);
+			infectUpLeft(P);
 
 		}
 	}
@@ -420,7 +420,7 @@ public class Grid {
 				if (T - grid[i][j].getLastOccuppied() == 20) {
 					grid[i][j].setInfected(false);
 					grid[i][j].setLastOccuppied(0);
-					DrawGrid.drawCell(i, j, StdDraw.WHITE);
+					
 				}
 	}
 
