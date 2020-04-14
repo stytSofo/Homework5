@@ -378,6 +378,42 @@ public class Grid {
 			}
 	}
 
+	private void infectDownRight(People P) {
+		if ((P.getPosition().getX() != N-1 )&&(P.getPosition().getY() != 0)) {
+			int n = grid[(int) P.getPosition().getX()+1][(int) P.getPosition().getY()-1].isOccupied();
+			
+				if (n != -1) {
+					if (P.isInfected()) {
+						if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
+							people[n].Infect();
+					}
+					else if(people[n].isInfected()) {
+						if(Math.random()<P.getProbGetInfection()*people[n].getProbGiveInfection())
+							P.Infect();
+					}
+				}
+			}
+	}
+	
+	private void infectDownLeft(People P) {
+		if ((P.getPosition().getX() != 0 )&&(P.getPosition().getY() != 0)) {
+			int n = grid[(int) P.getPosition().getX()-1][(int) P.getPosition().getY()-1].isOccupied();
+			
+				if (n != -1) {
+					if (P.isInfected()) {
+						if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
+							people[n].Infect();
+					}
+					else if(people[n].isInfected()) {
+						if(Math.random()<P.getProbGetInfection()*people[n].getProbGiveInfection())
+							P.Infect();
+					}
+				}
+			}
+	}
+	
+	
+	
 	public void Disinfect(int T) {
 		for (int i = 0; i < grid.length; i++)
 			for (int j = 0; j < grid.length; j++)
