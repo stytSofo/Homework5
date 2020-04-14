@@ -66,29 +66,21 @@ public class Grid {
 
 			if (move_prob == 0 && canMoveUp(people[i])) {
 				MovePeople(people[i], Time);
-			}
-			else if (move_prob == 1 && canMoveDown(people[i])) {
+			} else if (move_prob == 1 && canMoveDown(people[i])) {
 				MovePeople(people[i], Time);
-			}
-			else if (move_prob == 2 && canMoveRight(people[i])) {
+			} else if (move_prob == 2 && canMoveRight(people[i])) {
 				MovePeople(people[i], Time);
-			}
-			else if (move_prob == 3 && canMoveLeft(people[i])){
+			} else if (move_prob == 3 && canMoveLeft(people[i])) {
 				MovePeople(people[i], Time);
-			}
-			else if (move_prob == 4 && canMoveDiagUpLeft(people[i])) {
+			} else if (move_prob == 4 && canMoveDiagUpLeft(people[i])) {
 				MovePeople(people[i], Time);
-			}
-			else if (move_prob == 5 && canMoveDiagUpRight(people[i])) {
+			} else if (move_prob == 5 && canMoveDiagUpRight(people[i])) {
 				MovePeople(people[i], Time);
-			}
-			else if (move_prob == 6 && canMoveDiagDownLeft(people[i])) {
+			} else if (move_prob == 6 && canMoveDiagDownLeft(people[i])) {
 				MovePeople(people[i], Time);
-			}
-			else if (move_prob == 7 && canMoveDiagDownRight(people[i])) {
+			} else if (move_prob == 7 && canMoveDiagDownRight(people[i])) {
 				MovePeople(people[i], Time);
-			}
-			else {
+			} else {
 				MovePeople(people[i], Time);
 			}
 			Draw(people[i]);
@@ -104,11 +96,11 @@ public class Grid {
 			return false;
 		if (grid[X][Y + 1].isOccupied())
 			return false;
-		
+
 		grid[X][Y].setOccupied(false);
 		DrawGrid.removePeople(X, Y);
 		p.changePosition(0, 1);
-		
+
 		return true;
 	}
 
@@ -124,7 +116,7 @@ public class Grid {
 		grid[X][Y].setOccupied(false);
 		DrawGrid.removePeople(X, Y);
 		p.changePosition(0, -1);
-		
+
 		return true;
 	}
 
@@ -140,7 +132,7 @@ public class Grid {
 		grid[X][Y].setOccupied(false);
 		DrawGrid.removePeople(X, Y);
 		p.changePosition(1, 0);
-		
+
 		return true;
 	}
 
@@ -204,7 +196,7 @@ public class Grid {
 		grid[X][Y].setOccupied(false);
 		DrawGrid.removePeople(X, Y);
 		p.changePosition(1, -1);
-		
+
 		return true;
 	}
 
@@ -230,34 +222,31 @@ public class Grid {
 
 		else if (P.isInfected()) {
 			DrawGrid.drawPeople((int) P.getPosition().getX(), (int) P.getPosition().getY(), StdDraw.RED);
-			
+
 		} else
 			DrawGrid.drawPeople((int) P.getPosition().getX(), (int) P.getPosition().getY(), StdDraw.GREEN);
 
 	}
-	
-	private void MovePeople(People P,int Time) {
+
+	private void MovePeople(People P, int Time) {
 		grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()].setOccupied(true);
 
 		if (P.isInfected()) {
 			grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()].setInfected(true);
-			grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()]
-					.setLastOccuppied(Time);
+			grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()].setLastOccuppied(Time);
 
 		}
 
 		if (grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()].isInfected()) {
-			if (Math.random() < grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()]
-					.getProbGiveInfection() && !P.isImmune()) {
+			if (Math.random() < grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()].getProbGiveInfection()
+					&& !P.isImmune()) {
 				P.Infect();
-				
 
 			}
 
 		}
-		
+
 	}
-	
 
 	public void Disinfect(int T) {
 		for (int i = 0; i < grid.length; i++)
