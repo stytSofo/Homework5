@@ -35,8 +35,8 @@ public class Covid {
 
 			StdOut.println("Give probability of having protection: ");
 			double probToHaveProtection = StdIn.readDouble();
-			
-			while((probToHaveProtection<0)||(probToHaveProtection>1)) {
+
+			while ((probToHaveProtection < 0) || (probToHaveProtection > 1)) {
 				StdOut.println("Probability should be between 0 and 1");
 				StdOut.println("Give probability of having protection: ");
 				probToHaveProtection = StdIn.readDouble();
@@ -44,53 +44,67 @@ public class Covid {
 
 			StdOut.println("Give probability to transmit the infection with protection: ");
 			double probGiveInfectionWithProtection = StdIn.readDouble();
-			while((probGiveInfectionWithProtection<0)||(probGiveInfectionWithProtection>1)) {
+			while ((probGiveInfectionWithProtection < 0) || (probGiveInfectionWithProtection > 1)) {
 				StdOut.println("Probability should be between 0 and 1");
 				StdOut.println("Give probability to transmit the infection with protection: ");
 				probGiveInfectionWithProtection = StdIn.readDouble();
 			}
 
-			
 			StdOut.println("Give probability to transmit the infection with no protection: ");
 			double probGiveInfectionWithoutProtection = StdIn.readDouble();
-			while((probGiveInfectionWithoutProtection<0)||(probGiveInfectionWithoutProtection>1)) {
-				StdOut.println("Probability should be between 0 and 1");
+			while ((probGiveInfectionWithProtection > probGiveInfectionWithoutProtection)
+					&& ((probGiveInfectionWithoutProtection < 0) || (probGiveInfectionWithoutProtection > 1))) {
+				if (probGiveInfectionWithProtection > probGiveInfectionWithoutProtection)
+					StdOut.println(
+							"The probability to infect someone with protection should be lower than the probability to infect someone with no protection");
+				if ((probGiveInfectionWithoutProtection < 0) || (probGiveInfectionWithoutProtection > 1))
+					StdOut.println("Probability should be between 0 and 1");
 				StdOut.println("Give probability to transmit the infection with no protection: ");
 				probGiveInfectionWithoutProtection = StdIn.readDouble();
 			}
 
 			StdOut.println("Give probability to get infected with protection: ");
 			double probGetInfectionWithProtection = StdIn.readDouble();
-			while((probGetInfectionWithProtection<0)||(probGetInfectionWithProtection>1)) {
+			while ((probGetInfectionWithProtection < 0) || (probGetInfectionWithProtection > 1)) {
 				StdOut.println("Probability should be between 0 and 1");
 				StdOut.println("Give probability to get infected with protection: ");
 				probGetInfectionWithProtection = StdIn.readDouble();
 			}
-			
+
 			StdOut.println("Give probability to get infected with no protection: ");
 			double probGetInfectionWithoutProtection = StdIn.readDouble();
-			while((probGetInfectionWithoutProtection<0)||(probGetInfectionWithoutProtection>1)) {
-				StdOut.println("Probability should be between 0 and 1");
+			while ((probGetInfectionWithProtection > probGetInfectionWithoutProtection)
+					&& ((probGetInfectionWithoutProtection < 0) || (probGetInfectionWithoutProtection > 1))) {
+				if (probGetInfectionWithProtection > probGetInfectionWithoutProtection)
+					StdOut.println(
+							"The probability to get infected with protection should be lower than the probability to get infected with no protection");
+				if ((probGetInfectionWithoutProtection < 0) || (probGetInfectionWithoutProtection > 1))
+					StdOut.println("Probability should be between 0 and 1");
 				StdOut.println("Give probability to get infected with no protection: ");
 				probGetInfectionWithoutProtection = StdIn.readDouble();
 			}
-			
+
 			StdOut.println("Give probability to be immune: ");
 			double probToBeImmune = StdIn.readDouble();
-			while((probToBeImmune<0)||(probToBeImmune>1)) {
+			while ((probToBeImmune < 0) || (probToBeImmune > 1)) {
 				StdOut.println("Probability should be between 0 and 1");
 				StdOut.println("Give probability to be immune: ");
 				probToBeImmune = StdIn.readDouble();
 			}
-			
+
 			StdOut.println("Give probability to get infected from objects: ");
 			double probCellToGiveInfection = StdIn.readDouble();
-			while((probCellToGiveInfection<0)||(probCellToGiveInfection>1)) {
-				StdOut.println("Probability should be between 0 and 1");
+			while ((probGetInfectionWithoutProtection > probCellToGiveInfection)
+					&& ((probCellToGiveInfection < 0) || (probCellToGiveInfection > 1))) {
+				if (probGetInfectionWithoutProtection > probCellToGiveInfection)
+					StdOut.println(
+							"The probability to get infected by an object is lower than the probability of getting infected from a person");
+				if ((probCellToGiveInfection < 0) || (probCellToGiveInfection > 1))
+					StdOut.println("Probability should be between 0 and 1");
 				StdOut.println("Give probability to get infected from objects: ");
 				probCellToGiveInfection = StdIn.readDouble();
 			}
-			
+
 			DrawGrid.DrawFrame(N);
 
 			DrawGrid.waitFrame();
