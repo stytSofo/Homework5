@@ -253,12 +253,20 @@ public class Grid {
 	}
 	
 	private void InfectByHuman(People P) {
+		
 		if(P.isInfected()) {
-			if()
+			infectUp(p);
+			infectDown(p);
+			infectRight(p);
+			infectLeft(p);
+			infectDiagUpRight(p);
+			infectDiagDownRight(p);
+			infectDiagDownLeft(p);
+			infectDiagUpLeft(p);
+						
+				}
 		}
 			
-		
-	}
 
 	public void Disinfect(int T) {
 		for (int i = 0; i < grid.length; i++)
