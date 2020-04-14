@@ -2,19 +2,19 @@ package sofokleous_sofroniou.hw5;
 
 public class Cell {
 
-	private boolean occupied;
+	private int occupied;
 	private boolean infected;
 	private double probGiveInfection;
 	private int lastOccuppied;
 
 	public Cell() {
-		this.occupied = false;
+		this.occupied = -1;
 		this.infected = false;
 		this.probGiveInfection = 0;
 		this.lastOccuppied = 0;
 	}
 
-	public Cell(boolean occupied, boolean infected, double probGiveInfection, int lastOccuppied) {
+	public Cell(int occupied, boolean infected, double probGiveInfection, int lastOccuppied) {
 		
 		this.occupied = occupied;
 		this.infected = infected;
@@ -23,11 +23,11 @@ public class Cell {
 		
 	}
 	
-	public boolean isOccupied() {
+	public int isOccupied() {
 		return occupied;
 	}
 
-	public void setOccupied(boolean occupied) {
+	public void setOccupied(int occupied) {
 		this.occupied = occupied;
 	}
 
