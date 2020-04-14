@@ -67,8 +67,10 @@ public class Grid {
 
 			for (int i = 0; i < people.length; i++) {
 
-				Point newPos = findNewPosition(people[i]);
-
+				if(isThereEmptyCell(people[i]))
+					Point newPos = findNewPosition(people[i]);
+				
+				
 				
 				
 				
@@ -88,7 +90,20 @@ public class Grid {
 
 	} // kleisimo method
 
-	public Point findNewPos(People p) {
+	public boolean isThereEmptyCell(People p) {
+		
+		for(int row=-1; row<=1; row++)
+			for(int col=-1; col<=1; col++) {
+				double x = p.getPosition().getX() + col;
+				double y = p.getPosition().getY() + row;
+				if(isEmpty(x,y))
+			}
+				
+		
+	}
+	
+	
+	public Point findNewPosition(People p) {
 
 		Point newPosition = p.getPosition();
 		int direction = (int) (Math.random() * 8);
@@ -125,7 +140,7 @@ public class Grid {
 	public boolean isEmpty(double X, double Y) {
 		int x = (int)X;
 		int y= (int) Y;
-		return grid[x][y].isOccupied();
+		return !grid[x][y].isOccupied();
 	}
 	
 	
