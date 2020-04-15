@@ -7,11 +7,18 @@ import edu.princeton.cs.introcs.StdDraw;
 import edu.princeton.cs.introcs.StdIn;
 import edu.princeton.cs.introcs.StdOut;
 
+/**
+ * This class represents the Covid simulation. When this class is runned, the
+ * simulation starts.
+ * 
+ * @author ssofok02 and asofro03
+ * @date 14/04/2020
+ *
+ */
+
 public class Covid {
 
 	public static void main(String[] args) {
-		
-		//NA VALOUME DEFAULT MODE i guess?
 
 		try {
 			StdOut.println("Give grid length: ");
@@ -24,7 +31,7 @@ public class Covid {
 
 			StdOut.println("Give population: ");
 			int population = StdIn.readInt();
-			while (population > (N+1) * (N+1) || population <= 0) {
+			while (population > (N + 1) * (N + 1) || population <= 0) {
 				if (population > N * N)
 					StdOut.println("Population can not be bigger than the area of the grid.");
 				if (population <= 0)
