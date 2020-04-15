@@ -4,6 +4,13 @@ import java.awt.Color;
 import edu.princeton.cs.introcs.StdDraw;
 import edu.princeton.cs.introcs.StdOut;
 
+/**
+ * This class represents a grid of cells, with people.
+ * 
+ * @author ssofok02 and asofro03
+ * @date 13/04/2020
+ *
+ */
 public class Grid {
 
 	private Cell[][] grid;
@@ -11,6 +18,25 @@ public class Grid {
 	private People[] people;
 	private int population;
 
+	/**
+	 * Constructor for grid.
+	 * 
+	 * @param N                                  Length of the grid.
+	 * @param infectedPopulation                 How many infected people.
+	 * @param population                         How many people in total.
+	 * @param probToHaveProtection               The probability to have protection.
+	 * @param probGiveInfectionWithProtection    The probability to infect someone
+	 *                                           with protection.
+	 * @param probGiveInfectionWithoutProtection The probability to infect someone
+	 *                                           with no protection.
+	 * @param probGetInfectionWithProtection     The probability to get infected by
+	 *                                           someone with protection.
+	 * @param probGetInfectionWithoutProtection  The probability to get infected by
+	 *                                           someone with no protection
+	 * @param probToBeImmune                     The probability to be immune.
+	 * @param probCellToGiveInfection            The probability a cell to infect a
+	 *                                           person.
+	 */
 	public Grid(int N, int infectedPopulation, int population, double probToHaveProtection,
 			double probGiveInfectionWithProtection, double probGiveInfectionWithoutProtection,
 			double probGetInfectionWithProtection, double probGetInfectionWithoutProtection, double probToBeImmune,
@@ -45,12 +71,20 @@ public class Grid {
 
 	}
 
+	/**
+	 * This method initializes the grid with the default cells.
+	 */
 	public void InitialiseGrid() {
 		for (int row = 0; row < this.N; row++)
 			for (int col = 0; col < this.N; col++)
 				grid[row][col] = new Cell();
 	}
 
+	/**
+	 * This method finds randomly a new non occupied position.
+	 * 
+	 * @return Point of the new position.
+	 */
 	public Point findRandomPosition() {
 		int x, y;
 		do {
@@ -60,6 +94,12 @@ public class Grid {
 		return new Point(x, y);
 	}
 
+	/**
+	 * This method moves randomly, if possible, all the people in near positions.
+	 * Also it infects people and draws our simulation.
+	 * 
+	 * @param Time Minutes in our simulation.
+	 */
 	public void move(int Time) {
 		Disinfect(Time);
 		for (int i = 0; i < people.length; i++) {
@@ -93,6 +133,13 @@ public class Grid {
 		}
 	}
 
+	/**
+	 * This method checks if it is possible for the person to move up, and if it is
+	 * possible, then the method changes the person's position and draws the person.
+	 * 
+	 * @param p The person
+	 * @return True/False if the person can move up.
+	 */
 	private boolean canMoveUp(People p) {
 		int X = (int) p.getPosition().getX();
 		int Y = (int) p.getPosition().getY();
@@ -109,6 +156,13 @@ public class Grid {
 		return true;
 	}
 
+	/**
+	 * This method checks if it is possible for the person to move down, and if it is
+	 * possible, then the method changes the person's position and draws the person.
+	 * 
+	 * @param p The person
+	 * @return True/False if the person can move down.
+	 */
 	private boolean canMoveDown(People p) {
 		int X = (int) p.getPosition().getX();
 		int Y = (int) p.getPosition().getY();
@@ -125,6 +179,14 @@ public class Grid {
 		return true;
 	}
 
+	/**
+	 * This method checks if it is possible for the person to move right, and if it
+	 * is possible, then the method changes the person's position and draws the
+	 * person.
+	 * 
+	 * @param p The person
+	 * @return True/False if the person can move right.
+	 */
 	private boolean canMoveRight(People p) {
 		int X = (int) p.getPosition().getX();
 		int Y = (int) p.getPosition().getY();
@@ -141,6 +203,13 @@ public class Grid {
 		return true;
 	}
 
+	/**
+	 * This method checks if it is possible for the person to move left, and if it is
+	 * possible, then the method changes the person's position and draws the person.
+	 * 
+	 * @param p The person
+	 * @return True/False if the person can move left.
+	 */
 	private boolean canMoveLeft(People p) {
 		int X = (int) p.getPosition().getX();
 		int Y = (int) p.getPosition().getY();
@@ -157,6 +226,14 @@ public class Grid {
 		return true;
 	}
 
+	/**
+	 * This method checks if it is possible for the person to move up left, and if it
+	 * is possible, then the method changes the person's position and draws the
+	 * person.
+	 * 
+	 * @param p The person
+	 * @return True/False if the person can move up left.
+	 */
 	private boolean canMoveDiagUpLeft(People p) {
 		int X = (int) p.getPosition().getX();
 		int Y = (int) p.getPosition().getY();
@@ -173,6 +250,14 @@ public class Grid {
 		return true;
 	}
 
+	/**
+	 * This method checks if it is possible for the person to move up right, and if
+	 * it is possible, then the method changes the person's position and draws the
+	 * person.
+	 * 
+	 * @param p The person
+	 * @return True/False if the person can move up right.
+	 */
 	private boolean canMoveDiagUpRight(People p) {
 		int X = (int) p.getPosition().getX();
 		int Y = (int) p.getPosition().getY();
@@ -189,6 +274,14 @@ public class Grid {
 		return true;
 	}
 
+	/**
+	 * This method checks if it is possible for the person to move down right, and if
+	 * it is possible, then the method changes the person's position and draws the
+	 * person.
+	 * 
+	 * @param p The person
+	 * @return True/False if the person can move down right.
+	 */
 	private boolean canMoveDiagDownRight(People p) {
 		int X = (int) p.getPosition().getX();
 		int Y = (int) p.getPosition().getY();
@@ -205,6 +298,14 @@ public class Grid {
 		return true;
 	}
 
+	/**
+	 * This method checks if it is possible for the person to move down left, and if
+	 * it is possible, then the method changes the person's position and draws the
+	 * person.
+	 * 
+	 * @param p The person
+	 * @return True/False if the person can move down left.
+	 */
 	private boolean canMoveDiagDownLeft(People p) {
 		int X = (int) p.getPosition().getX();
 		int Y = (int) p.getPosition().getY();
@@ -221,35 +322,45 @@ public class Grid {
 		return true;
 	}
 
+	/**
+	 * This method draws infected people with red, immune people with blue, non
+	 * infected people with green, people that are not infected and wearing
+	 * protection with pink, and infected people with no protection with black.
+	 * 
+	 * @param P People that we are drawing.
+	 */
 	private void Draw(People P) {
 		if (P.isImmune())
 			DrawGrid.drawPeople((int) P.getPosition().getX(), (int) P.getPosition().getY(), StdDraw.BLUE);
 
 		else if (P.isInfected()) {
-			if(P.hasProtection())
+			if (P.hasProtection())
 				DrawGrid.drawPeople((int) P.getPosition().getX(), (int) P.getPosition().getY(), StdDraw.PINK);
 			else
 				DrawGrid.drawPeople((int) P.getPosition().getX(), (int) P.getPosition().getY(), StdDraw.RED);
-			
-		} 
-		
+
+		}
+
 		else {
-			if(P.hasProtection())
+			if (P.hasProtection())
 				DrawGrid.drawPeople((int) P.getPosition().getX(), (int) P.getPosition().getY(), StdDraw.GREEN);
 			else
 				DrawGrid.drawPeople((int) P.getPosition().getX(), (int) P.getPosition().getY());
-			
+
 		}
 
 	}
 
+	/**
+	 * @param P
+	 * @param Time
+	 */
 	private void MovePeople(People P, int Time) {
 		grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()].setOccupied(P.getId());
 
 		if (P.isInfected()) {
 			grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()].setInfected(true);
 			grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()].setLastOccuppied(Time);
-			
 
 		}
 
@@ -264,6 +375,12 @@ public class Grid {
 
 	}
 
+	/**
+	 * This method infects the people that are around the person, or infects the
+	 * person if he is around other infected people.
+	 * 
+	 * @param P The person that infects/is being infected.
+	 */
 	private void InfectByHuman(People P) {
 
 		if (P.isInfected()) {
@@ -279,151 +396,156 @@ public class Grid {
 		}
 	}
 
+	/**
+	 * In this method, if the person is infected, he infects the person that is above
+	 * him. Also, if a person above him is infected then the person gets infected
+	 * too.
+	 * 
+	 * @param P The person that gets infected/infects others
+	 */
 	private void infectUp(People P) {
 		if (P.getPosition().getY() != N - 1) {
 			int n = grid[(int) P.getPosition().getX()][(int) P.getPosition().getY() + 1].isOccupied();
-			
-				if (n != -1) {
-					if (P.isInfected()) {
-						if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
-							people[n].Infect();
-					}
-					else if(people[n].isInfected()) {
-						if(Math.random()<P.getProbGetInfection()*people[n].getProbGiveInfection())
-							P.Infect();
-					}
+
+			if (n != -1) {
+				if (P.isInfected()) {
+					if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
+						people[n].Infect();
+				} else if (people[n].isInfected()) {
+					if (Math.random() < P.getProbGetInfection() * people[n].getProbGiveInfection())
+						P.Infect();
 				}
 			}
 		}
+	}
+
 	private void infectDown(People P) {
 		if (P.getPosition().getY() != 0) {
 			int n = grid[(int) P.getPosition().getX()][(int) P.getPosition().getY() - 1].isOccupied();
-			
-				if (n != -1) {
-					if (P.isInfected()) {
-						if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
-							people[n].Infect();
-					}
-					else if(people[n].isInfected()) {
-						if(Math.random()<P.getProbGetInfection()*people[n].getProbGiveInfection())
-							P.Infect();
-					}
+
+			if (n != -1) {
+				if (P.isInfected()) {
+					if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
+						people[n].Infect();
+				} else if (people[n].isInfected()) {
+					if (Math.random() < P.getProbGetInfection() * people[n].getProbGiveInfection())
+						P.Infect();
 				}
 			}
 		}
+	}
+
 	private void infectRight(People P) {
 		if (P.getPosition().getX() != N - 1) {
-			int n = grid[(int) P.getPosition().getX()+1][(int) P.getPosition().getY()].isOccupied();
-			
-				if (n != -1) {
-					if (P.isInfected()) {
-						if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
-							people[n].Infect();
-					}
-					else if(people[n].isInfected()) {
-						if(Math.random()<P.getProbGetInfection()*people[n].getProbGiveInfection())
-							P.Infect();
-					}
+			int n = grid[(int) P.getPosition().getX() + 1][(int) P.getPosition().getY()].isOccupied();
+
+			if (n != -1) {
+				if (P.isInfected()) {
+					if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
+						people[n].Infect();
+				} else if (people[n].isInfected()) {
+					if (Math.random() < P.getProbGetInfection() * people[n].getProbGiveInfection())
+						P.Infect();
 				}
 			}
 		}
+	}
+
 	private void infectLeft(People P) {
 		if (P.getPosition().getX() != 0) {
-			int n = grid[(int) P.getPosition().getX()-1][(int) P.getPosition().getY()].isOccupied();
-			
-				if (n != -1) {
-					if (P.isInfected()) {
-						if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
-							people[n].Infect();
-					}
-					else if(people[n].isInfected()) {
-						if(Math.random()<P.getProbGetInfection()*people[n].getProbGiveInfection())
-							P.Infect();
-					}
+			int n = grid[(int) P.getPosition().getX() - 1][(int) P.getPosition().getY()].isOccupied();
+
+			if (n != -1) {
+				if (P.isInfected()) {
+					if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
+						people[n].Infect();
+				} else if (people[n].isInfected()) {
+					if (Math.random() < P.getProbGetInfection() * people[n].getProbGiveInfection())
+						P.Infect();
 				}
 			}
 		}
-	
-	private void infectUpLeft(People P) {
-		if ((P.getPosition().getX() != 0)&&(P.getPosition().getY() != N - 1)) {
-			int n = grid[(int) P.getPosition().getX()-1][(int) P.getPosition().getY()+1].isOccupied();
-			
-				if (n != -1) {
-					if (P.isInfected()) {
-						if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
-							people[n].Infect();
-					}
-					else if(people[n].isInfected()) {
-						if(Math.random()<P.getProbGetInfection()*people[n].getProbGiveInfection())
-							P.Infect();
-					}
-				}
-			}
 	}
-	
-	private void infectUpRight(People P) {
-		if ((P.getPosition().getX() != N-1 )&&(P.getPosition().getY() != N - 1)) {
-			int n = grid[(int) P.getPosition().getX()+1][(int) P.getPosition().getY()+1].isOccupied();
-			
-				if (n != -1) {
-					if (P.isInfected()) {
-						if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
-							people[n].Infect();
-					}
-					else if(people[n].isInfected()) {
-						if(Math.random()<P.getProbGetInfection()*people[n].getProbGiveInfection())
-							P.Infect();
-					}
+
+	private void infectUpLeft(People P) {
+		if ((P.getPosition().getX() != 0) && (P.getPosition().getY() != N - 1)) {
+			int n = grid[(int) P.getPosition().getX() - 1][(int) P.getPosition().getY() + 1].isOccupied();
+
+			if (n != -1) {
+				if (P.isInfected()) {
+					if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
+						people[n].Infect();
+				} else if (people[n].isInfected()) {
+					if (Math.random() < P.getProbGetInfection() * people[n].getProbGiveInfection())
+						P.Infect();
 				}
 			}
+		}
+	}
+
+	private void infectUpRight(People P) {
+		if ((P.getPosition().getX() != N - 1) && (P.getPosition().getY() != N - 1)) {
+			int n = grid[(int) P.getPosition().getX() + 1][(int) P.getPosition().getY() + 1].isOccupied();
+
+			if (n != -1) {
+				if (P.isInfected()) {
+					if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
+						people[n].Infect();
+				} else if (people[n].isInfected()) {
+					if (Math.random() < P.getProbGetInfection() * people[n].getProbGiveInfection())
+						P.Infect();
+				}
+			}
+		}
 	}
 
 	private void infectDownRight(People P) {
-		if ((P.getPosition().getX() != N-1 )&&(P.getPosition().getY() != 0)) {
-			int n = grid[(int) P.getPosition().getX()+1][(int) P.getPosition().getY()-1].isOccupied();
-			
-				if (n != -1) {
-					if (P.isInfected()) {
-						if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
-							people[n].Infect();
-					}
-					else if(people[n].isInfected()) {
-						if(Math.random()<P.getProbGetInfection()*people[n].getProbGiveInfection())
-							P.Infect();
-					}
+		if ((P.getPosition().getX() != N - 1) && (P.getPosition().getY() != 0)) {
+			int n = grid[(int) P.getPosition().getX() + 1][(int) P.getPosition().getY() - 1].isOccupied();
+
+			if (n != -1) {
+				if (P.isInfected()) {
+					if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
+						people[n].Infect();
+				} else if (people[n].isInfected()) {
+					if (Math.random() < P.getProbGetInfection() * people[n].getProbGiveInfection())
+						P.Infect();
 				}
 			}
+		}
 	}
-	
+
 	private void infectDownLeft(People P) {
-		if ((P.getPosition().getX() != 0 )&&(P.getPosition().getY() != 0)) {
-			int n = grid[(int) P.getPosition().getX()-1][(int) P.getPosition().getY()-1].isOccupied();
-			
-				if (n != -1) {
-					if (P.isInfected()) {
-						if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
-							people[n].Infect();
-					}
-					else if(people[n].isInfected()) {
-						if(Math.random()<P.getProbGetInfection()*people[n].getProbGiveInfection())
-							P.Infect();
-					}
+		if ((P.getPosition().getX() != 0) && (P.getPosition().getY() != 0)) {
+			int n = grid[(int) P.getPosition().getX() - 1][(int) P.getPosition().getY() - 1].isOccupied();
+
+			if (n != -1) {
+				if (P.isInfected()) {
+					if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
+						people[n].Infect();
+				} else if (people[n].isInfected()) {
+					if (Math.random() < P.getProbGetInfection() * people[n].getProbGiveInfection())
+						P.Infect();
 				}
 			}
+		}
 	}
-	
-	
-	
+
 	public void Disinfect(int T) {
 		for (int i = 0; i < grid.length; i++)
 			for (int j = 0; j < grid.length; j++)
 				if (T - grid[i][j].getLastOccuppied() == 20) {
 					grid[i][j].setInfected(false);
 					grid[i][j].setLastOccuppied(0);
-					
+
 				}
 	}
 
+	/**
+	 * This method is a counter for all the infected people.
+	 * 
+	 * @return The number of infected people.
+	 */
 	public int getInfectedPeople() {
 		int c = 0;
 		for (int i = 0; i < people.length; i++)

@@ -17,9 +17,9 @@ public class Cell {
 	/**
 	 * Constructor of a cell.
 	 * 
-	 * @param occupied          If the cell is occupied by a human.
+	 * @param occupied          If the cell is occupied by a person.
 	 * @param infected          If the cell is infected.
-	 * @param probGiveInfection The probability of the cell to infect other humans.
+	 * @param probGiveInfection The probability of the cell to infect other people.
 	 * @param lastOccuppied     The time that the cell was occupied.
 	 */
 	public Cell(int occupied, boolean infected, double probGiveInfection, int lastOccuppied) {
@@ -80,19 +80,19 @@ public class Cell {
 	}
 
 	/**
-	 * Getter method for the probability of a cell to give infection to a human.
+	 * Getter method for the probability of a cell to give infection to a person.
 	 * 
-	 * @return The probability of a cell to give infection to a human.
+	 * @return The probability of a cell to give infection to a person.
 	 */
 	public double getProbGiveInfection() {
 		return probGiveInfection;
 	}
 
 	/**
-	 * Setter method for the probability of a cell to give infection to a human.
+	 * Setter method for the probability of a cell to give infection to a person.
 	 * 
 	 * @param probGiveInfection The new probability of a cell to give infection to a
-	 *                          human.
+	 *                          person.
 	 */
 	public void setProbGiveInfection(double probGiveInfection) {
 		this.probGiveInfection = probGiveInfection;
