@@ -34,7 +34,7 @@ public class Cell {
 	/**
 	 * Default constructor of a cell. A default cell is not occupied, is not
 	 * infected so there is no possibility to infect somebody and it was never
-	 * occupied.
+	 * occupied
 	 */
 	public Cell() {
 		this.occupied = -1;
