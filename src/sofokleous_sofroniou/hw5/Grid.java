@@ -157,8 +157,9 @@ public class Grid {
 	}
 
 	/**
-	 * This method checks if it is possible for the person to move down, and if it is
-	 * possible, then the method changes the person's position and draws the person.
+	 * This method checks if it is possible for the person to move down, and if it
+	 * is possible, then the method changes the person's position and draws the
+	 * person.
 	 * 
 	 * @param p The person
 	 * @return True/False if the person can move down.
@@ -204,8 +205,9 @@ public class Grid {
 	}
 
 	/**
-	 * This method checks if it is possible for the person to move left, and if it is
-	 * possible, then the method changes the person's position and draws the person.
+	 * This method checks if it is possible for the person to move left, and if it
+	 * is possible, then the method changes the person's position and draws the
+	 * person.
 	 * 
 	 * @param p The person
 	 * @return True/False if the person can move left.
@@ -227,8 +229,8 @@ public class Grid {
 	}
 
 	/**
-	 * This method checks if it is possible for the person to move up left, and if it
-	 * is possible, then the method changes the person's position and draws the
+	 * This method checks if it is possible for the person to move up left, and if
+	 * it is possible, then the method changes the person's position and draws the
 	 * person.
 	 * 
 	 * @param p The person
@@ -275,9 +277,9 @@ public class Grid {
 	}
 
 	/**
-	 * This method checks if it is possible for the person to move down right, and if
-	 * it is possible, then the method changes the person's position and draws the
-	 * person.
+	 * This method checks if it is possible for the person to move down right, and
+	 * if it is possible, then the method changes the person's position and draws
+	 * the person.
 	 * 
 	 * @param p The person
 	 * @return True/False if the person can move down right.
@@ -397,9 +399,9 @@ public class Grid {
 	}
 
 	/**
-	 * In this method, if the person is infected, he infects the person that is above
-	 * him. Also, if a person above him is infected then the person gets infected
-	 * too.
+	 * In this method, if the person is infected, he infects the person that is
+	 * above him. Also, if a person above him is infected then the person gets
+	 * infected too.
 	 * 
 	 * @param P The person that gets infected/infects others
 	 */
@@ -419,6 +421,13 @@ public class Grid {
 		}
 	}
 
+	/**
+	 * In this method, if the person is infected, he infects the person that is
+	 * below him. Also, if a person below him is infected then the person gets
+	 * infected too.
+	 * 
+	 * @param P The person that gets infected/infects others
+	 */
 	private void infectDown(People P) {
 		if (P.getPosition().getY() != 0) {
 			int n = grid[(int) P.getPosition().getX()][(int) P.getPosition().getY() - 1].isOccupied();
@@ -435,6 +444,13 @@ public class Grid {
 		}
 	}
 
+	/**
+	 * In this method, if the person is infected, he infects the person that is
+	 * right of him. Also, if a person right him is infected then the person gets
+	 * infected too.
+	 * 
+	 * @param P The person that gets infected/infects others
+	 */
 	private void infectRight(People P) {
 		if (P.getPosition().getX() != N - 1) {
 			int n = grid[(int) P.getPosition().getX() + 1][(int) P.getPosition().getY()].isOccupied();
@@ -451,6 +467,13 @@ public class Grid {
 		}
 	}
 
+	/**
+	 * In this method, if the person is infected, he infects the person that is on
+	 * his left. Also, if a person above him is infected then the person gets
+	 * infected too.
+	 * 
+	 * @param P The person that gets infected/infects others
+	 */
 	private void infectLeft(People P) {
 		if (P.getPosition().getX() != 0) {
 			int n = grid[(int) P.getPosition().getX() - 1][(int) P.getPosition().getY()].isOccupied();
@@ -467,6 +490,13 @@ public class Grid {
 		}
 	}
 
+	/**
+	 * In this method, if the person is infected, he infects the person that is
+	 * above left of him. Also, if a person above left of him is infected then the
+	 * person gets infected too.
+	 * 
+	 * @param P The person that gets infected/infects others
+	 */
 	private void infectUpLeft(People P) {
 		if ((P.getPosition().getX() != 0) && (P.getPosition().getY() != N - 1)) {
 			int n = grid[(int) P.getPosition().getX() - 1][(int) P.getPosition().getY() + 1].isOccupied();
@@ -483,6 +513,13 @@ public class Grid {
 		}
 	}
 
+	/**
+	 * In this method, if the person is infected, he infects the person that is
+	 * above right of him. Also, if a person above right of him is infected then the
+	 * person gets infected too.
+	 * 
+	 * @param P The person that gets infected/infects others
+	 */
 	private void infectUpRight(People P) {
 		if ((P.getPosition().getX() != N - 1) && (P.getPosition().getY() != N - 1)) {
 			int n = grid[(int) P.getPosition().getX() + 1][(int) P.getPosition().getY() + 1].isOccupied();
@@ -499,6 +536,13 @@ public class Grid {
 		}
 	}
 
+	/**
+	 * In this method, if the person is infected, he infects the person that is
+	 * below right him. Also, if a person below right him is infected then the
+	 * person gets infected too.
+	 * 
+	 * @param P The person that gets infected/infects others
+	 */
 	private void infectDownRight(People P) {
 		if ((P.getPosition().getX() != N - 1) && (P.getPosition().getY() != 0)) {
 			int n = grid[(int) P.getPosition().getX() + 1][(int) P.getPosition().getY() - 1].isOccupied();
@@ -515,6 +559,13 @@ public class Grid {
 		}
 	}
 
+	/**
+	 * In this method, if the person is infected, he infects the person that is
+	 * below left him. Also, if a person below left him is infected then the person
+	 * gets infected too.
+	 * 
+	 * @param P The person that gets infected/infects others
+	 */
 	private void infectDownLeft(People P) {
 		if ((P.getPosition().getX() != 0) && (P.getPosition().getY() != 0)) {
 			int n = grid[(int) P.getPosition().getX() - 1][(int) P.getPosition().getY() - 1].isOccupied();
@@ -531,6 +582,12 @@ public class Grid {
 		}
 	}
 
+	/**
+	 * This method disinfects an object when 20 minutes pass from the last time it
+	 * was occupied.
+	 * 
+	 * @param T	Current time
+	 */
 	public void Disinfect(int T) {
 		for (int i = 0; i < grid.length; i++)
 			for (int j = 0; j < grid.length; j++)
