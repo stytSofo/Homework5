@@ -8,7 +8,7 @@ import edu.princeton.cs.introcs.StdIn;
 import edu.princeton.cs.introcs.StdOut;
 
 /**
- * This class represents the Covid simulation. When this class is runned, the
+ * This class represents the Covid-19 simulation. When this class runs, the
  * simulation starts.
  * 
  * @author ssofok02 and asofro03
