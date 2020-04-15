@@ -10,6 +10,8 @@ import edu.princeton.cs.introcs.StdOut;
 public class Covid {
 
 	public static void main(String[] args) {
+		
+		//NA VALOUME DEFAULT MODE i guess?
 
 		try {
 			StdOut.println("Give grid length: ");

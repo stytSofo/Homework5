@@ -2,6 +2,13 @@ package sofokleous_sofroniou.hw5;
 
 import edu.princeton.cs.introcs.StdOut;
 
+/**
+ * This class represents a human.
+ * 
+ * @author ssofok02 and asofro03
+ * @date 12/04/2020
+ *
+ */
 public class People {
 	private boolean infected;
 	private Point position;
