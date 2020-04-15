@@ -354,8 +354,10 @@ public class Grid {
 	}
 
 	/**
-	 * @param P
-	 * @param Time
+	 * Method which changes each person's condition based on the health of the 
+	 * others around. It also changes the infectivity of the grid
+	 * @param P The Person on this instant
+	 * @param Time The current time
 	 */
 	private void MovePeople(People P, int Time) {
 		grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()].setOccupied(P.getId());
