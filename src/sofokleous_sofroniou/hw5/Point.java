@@ -43,6 +43,7 @@ public class Point {
 
 	/**
 	 * This method returns True/False if the two points have the same x,y.
+	 * 
 	 * @param p1 The second point that we will compare
 	 * @return True/False if the points are the same
 	 */
@@ -52,21 +53,35 @@ public class Point {
 
 	/**
 	 * This method returns the coordinates in String form.
-	 * @return "coordinate x: x coordinate y:  y"
+	 * 
+	 * @return "coordinate x: x coordinate y: y"
 	 */
 	public String toString() {
 		return "coordinate x: " + x + " coordinate y: " + y;
 	}
 
+	/**
+	 * This method prints a table of Points
+	 * 
+	 * @param tab The table of points
+	 */
 	public static void toString(Point tab[]) {
 		for (int i = 0; i < tab.length; i++)
 			StdOut.println(tab[i].toString());
 	}
 
+	/**
+	 * Getter method for y of a point.
+	 * @return y coordinate
+	 */
 	public double getY() {
 		return y;
 	}
 
+	/**
+	 * Getter method for x of a point.
+	 * @return x coordinate
+	 */
 	public double getX() {
 		return x;
 	}
