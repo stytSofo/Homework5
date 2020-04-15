@@ -22,7 +22,7 @@ public class Covid {
 
 			StdOut.println("Give population: ");
 			int population = StdIn.readInt();
-			while (population > N * N || population <= 0) {
+			while (population > (N+1) * (N+1) || population <= 0) {
 				if (population > N * N)
 					StdOut.println("Population can not be bigger than the area of the grid.");
 				if (population <= 0)
