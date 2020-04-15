@@ -11,25 +11,43 @@ public class People {
 	private boolean immune;
 	private int id;
 
+	/**
+	 * The constructor of People.
+	 * 
+	 * @param infected                           If the human is infected.
+	 * @param position                           The initial position of the human.
+	 * @param probToHaveProtection               The probability of having
+	 *                                           protection.
+	 * @param probGiveInfectionWithProtection    The probability to infect others
+	 *                                           with protection.
+	 * @param probGiveInfectionWithoutProtection The probability to infect others
+	 *                                           without protection.
+	 * @param probGetInfectionWithProtection     The probability to get infection
+	 *                                           with protection.
+	 * @param probGetInfectionWithoutProtection  The probability to get infection
+	 *                                           without protection.
+	 * @param probToBeImmune                     The probability be immune.
+	 * @param id                                 ID - Their position/index in
+	 *                                           People[] array.
+	 */
 	public People(boolean infected, Point position, double probToHaveProtection, double probGiveInfectionWithProtection,
 			double probGiveInfectionWithoutProtection, double probGetInfectionWithProtection,
 			double probGetInfectionWithoutProtection, double probToBeImmune, int id) {
 
 		this.position = position;
-		this.id=id;
-		
+		this.id = id;
+
 		if (Math.random() < probToBeImmune) {
 			this.immune = true;
 			this.infected = false;
-			probGiveInfection=0;
-			probGetInfection=0;
-			
+			probGiveInfection = 0;
+			probGetInfection = 0;
+
 		} else {
 
 			this.immune = false;
 
 			this.infected = infected;
-
 
 			if (Math.random() <= probToHaveProtection) {
 				this.hasProtection = true;
@@ -45,18 +63,37 @@ public class People {
 
 	}
 
+	/**
+	 * Getter method for Point.
+	 * 
+	 * @return The position-point of the human.
+	 */
 	public Point getPosition() {
 		return position;
 	}
-	
+
+	/**
+	 * Setter method for Point.
+	 * 
+	 * @param p The new position-point of the human.
+	 */
 	public void setPosition(Point p) {
-		position=p;
+		position = p;
 	}
-	
+
+	/**
+	 * This method changes the position of the human.
+	 * 
+	 * @param dx The horizontal relocation.
+	 * @param dy The vertical relocation.
+	 */
 	public void changePosition(double dx, double dy) {
 		position.translate(dx, dy);
 	}
 
+	/**
+	 * This method turns the human into infected.
+	 */
 	public void Infect() {
 		infected = true;
 	}
@@ -80,7 +117,7 @@ public class People {
 	public boolean isImmune() {
 		return this.immune;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
