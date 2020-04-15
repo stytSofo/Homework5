@@ -98,26 +98,56 @@ public class People {
 		infected = true;
 	}
 
+	/**
+	 * Getter method boolean infected.
+	 * 
+	 * @return Infected
+	 */
 	public boolean isInfected() {
 		return infected;
 	}
 
+	/**
+	 * Getter method for if the human has protection.
+	 * 
+	 * @return True/False if the human has protection.
+	 */
 	public boolean hasProtection() {
 		return hasProtection;
 	}
 
+	/**
+	 * Getter method of the probability to give infection.
+	 * 
+	 * @return The probability to give infection
+	 */
 	public double getProbGiveInfection() {
 		return probGiveInfection;
 	}
 
+	/**
+	 * Getter method of the probability to get infected by another human.
+	 * 
+	 * @return The probability to get infected.
+	 */
 	public double getProbGetInfection() {
 		return probGetInfection;
 	}
 
+	/**
+	 * Getter method of the immunity of a human.
+	 * 
+	 * @return True/False if the human is immune.
+	 */
 	public boolean isImmune() {
 		return this.immune;
 	}
 
+	/**
+	 * Getter method for humans ID.
+	 * 
+	 * @return Their position/index in People[] array.
+	 */
 	public int getId() {
 		return id;
 	}
