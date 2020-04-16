@@ -21,6 +21,15 @@ public class Covid {
 	public static void main(String[] args) {
 
 		try {
+			
+			StdOut.println("Give time for simulation: ");
+			int Time = StdIn.readInt();
+			while(Time<=0) {
+				StdOut.println("Give correct time");
+				Time = StdIn.readInt();
+			}
+			
+			
 			StdOut.println("Give grid length: ");
 			int N = StdIn.readInt();
 			while (N <= 1) {
@@ -126,10 +135,10 @@ public class Covid {
 			}
 			
 			StdOut.println("Give time to disinfect the grid: ");
-			int Time = StdIn.readInt();
-			while(Time<=0) {
+			int TimeDis = StdIn.readInt();
+			while(TimeDis<=0) {
 				StdOut.println("Give correct time");
-				Time = StdIn.readInt();
+				TimeDis = StdIn.readInt();
 			}
 
 			DrawGrid.DrawFrame(N);
@@ -138,7 +147,7 @@ public class Covid {
 
 			Grid grid = new Grid(N + 1, infectedPopulation, population, probToHaveProtection,
 					probGiveInfectionWithProtection, probGiveInfectionWithoutProtection, probGetInfectionWithProtection,
-					probGetInfectionWithoutProtection, probToBeImmune, probCellToGiveInfection,Time);
+					probGetInfectionWithoutProtection, probToBeImmune, probCellToGiveInfection,TimeDis);
 
 			for (int i = 1; i < Time; i++) {
 				grid.move(i);
