@@ -16,6 +16,7 @@ public class Grid {
 	private Cell[][] grid;
 	private int N;
 	private People[] people;
+	private int Time;
 	private int population;
 
 	/**
@@ -40,12 +41,13 @@ public class Grid {
 	public Grid(int N, int infectedPopulation, int population, double probToHaveProtection,
 			double probGiveInfectionWithProtection, double probGiveInfectionWithoutProtection,
 			double probGetInfectionWithProtection, double probGetInfectionWithoutProtection, double probToBeImmune,
-			double probCellToGiveInfection) {
+			double probCellToGiveInfection,int T) {
 
 		this.N = N;
 		this.grid = new Cell[N][N];
 		InitialiseGrid();
 		this.population = population;
+		Time =T;
 
 		people = new People[population];
 
@@ -362,7 +364,7 @@ public class Grid {
 	private void MovePeople(People P, int Time) {
 		grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()].setOccupied(P.getId());
 
-		if (P.isInfected()) {
+		if (P.isInfected() && Math.random()<P.getProbGiveInfection()) {
 			grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()].setInfected(true);
 			grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()].setLastOccuppied(Time);
 
@@ -387,7 +389,7 @@ public class Grid {
 	 */
 	private void InfectByHuman(People P) {
 
-		if (P.isInfected()) {
+		
 			infectUp(P);
 			infectDown(P);
 			infectRight(P);
@@ -397,7 +399,7 @@ public class Grid {
 			infectDownLeft(P);
 			infectUpLeft(P);
 
-		}
+		
 	}
 
 	/**
@@ -593,7 +595,7 @@ public class Grid {
 	public void Disinfect(int T) {
 		for (int i = 0; i < grid.length; i++)
 			for (int j = 0; j < grid.length; j++)
-				if (T - grid[i][j].getLastOccuppied() == 20) {
+				if (T - grid[i][j].getLastOccuppied() == Time) {
 					grid[i][j].setInfected(false);
 					grid[i][j].setLastOccuppied(0);
 

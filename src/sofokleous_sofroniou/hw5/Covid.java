@@ -124,6 +124,13 @@ public class Covid {
 				StdOut.println("Give probability to get infected from objects: ");
 				probCellToGiveInfection = StdIn.readDouble();
 			}
+			
+			StdOut.println("Give time to disinfect the grid: ");
+			int Time = StdIn.readInt();
+			while(Time<=0) {
+				StdOut.println("Give correct time");
+				Time = StdIn.readInt();
+			}
 
 			DrawGrid.DrawFrame(N);
 
@@ -131,9 +138,9 @@ public class Covid {
 
 			Grid grid = new Grid(N + 1, infectedPopulation, population, probToHaveProtection,
 					probGiveInfectionWithProtection, probGiveInfectionWithoutProtection, probGetInfectionWithProtection,
-					probGetInfectionWithoutProtection, probToBeImmune, probCellToGiveInfection);
+					probGetInfectionWithoutProtection, probToBeImmune, probCellToGiveInfection,Time);
 
-			for (int i = 1; i < 120; i++) {
+			for (int i = 1; i < Time; i++) {
 				grid.move(i);
 
 				DrawGrid.waitFrame();
