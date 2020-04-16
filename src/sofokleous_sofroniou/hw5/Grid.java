@@ -327,9 +327,9 @@ public class Grid {
 	}
 
 	/**
-	 * This method draws infected people with red, immune people with blue, non
-	 * infected people with green, people that are not infected and wearing
-	 * protection with pink, and infected people with no protection with black.
+	 * This method draws infected people with red, immune people with blue, 
+	 * healthy people with protection with green, people that are infected and wearing
+	 * protection with pink, and healthy people with no protection with black.
 	 * 
 	 * @param P People that we are drawing.
 	 */
