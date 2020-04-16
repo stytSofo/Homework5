@@ -21,15 +21,14 @@ public class Covid {
 	public static void main(String[] args) {
 
 		try {
-			
+
 			StdOut.println("Give time for simulation: ");
 			int Time = StdIn.readInt();
-			while(Time<=0) {
+			while (Time <= 0) {
 				StdOut.println("Give correct time");
 				Time = StdIn.readInt();
 			}
-			
-			
+
 			StdOut.println("Give grid length: ");
 			int N = StdIn.readInt();
 			while (N <= 1) {
@@ -133,10 +132,10 @@ public class Covid {
 				StdOut.println("Give probability to get infected from objects: ");
 				probCellToGiveInfection = StdIn.readDouble();
 			}
-			
+
 			StdOut.println("Give time to disinfect the grid: ");
 			int TimeDis = StdIn.readInt();
-			while(TimeDis<=0) {
+			while (TimeDis <= 0) {
 				StdOut.println("Give correct time");
 				TimeDis = StdIn.readInt();
 			}
@@ -147,7 +146,7 @@ public class Covid {
 
 			Grid grid = new Grid(N + 1, infectedPopulation, population, probToHaveProtection,
 					probGiveInfectionWithProtection, probGiveInfectionWithoutProtection, probGetInfectionWithProtection,
-					probGetInfectionWithoutProtection, probToBeImmune, probCellToGiveInfection,TimeDis);
+					probGetInfectionWithoutProtection, probToBeImmune, probCellToGiveInfection, TimeDis);
 
 			for (int i = 1; i < Time; i++) {
 				grid.move(i);
@@ -156,9 +155,15 @@ public class Covid {
 			}
 
 			StdOut.println("Total infected people: " + grid.getInfectedPeople());
+			StdOut.println("Total healthy people: " + grid.getHealthyPeople());
+			StdOut.println("Total immune people: " + grid.getImmunePeople());
+			StdOut.println("Total healthy people without protection : " + grid.getHealthyWithoutProtectionPeople());
+			StdOut.println("Total infected people with protection : " + grid.getInfectedWithProtectionPeople());
+
 		} catch (InputMismatchException e) {
 			System.out.println(e.getMessage());
 		}
+
 	}
 
 }
