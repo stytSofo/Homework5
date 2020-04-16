@@ -41,13 +41,13 @@ public class Grid {
 	public Grid(int N, int infectedPopulation, int population, double probToHaveProtection,
 			double probGiveInfectionWithProtection, double probGiveInfectionWithoutProtection,
 			double probGetInfectionWithProtection, double probGetInfectionWithoutProtection, double probToBeImmune,
-			double probCellToGiveInfection,int T) {
+			double probCellToGiveInfection, int T) {
 
 		this.N = N;
 		this.grid = new Cell[N][N];
 		InitialiseGrid();
 		this.population = population;
-		Time =T;
+		Time = T;
 
 		people = new People[population];
 
@@ -327,8 +327,8 @@ public class Grid {
 	}
 
 	/**
-	 * This method draws infected people with red, immune people with blue, 
-	 * healthy people with protection with green, people that are infected and wearing
+	 * This method draws infected people with red, immune people with blue, healthy
+	 * people with protection with green, people that are infected and wearing
 	 * protection with pink, and healthy people with no protection with black.
 	 * 
 	 * @param P People that we are drawing.
@@ -356,15 +356,16 @@ public class Grid {
 	}
 
 	/**
-	 * Method which changes each person's condition based on the health of the 
+	 * Method which changes each person's condition based on the health of the
 	 * others around. It also changes the infectivity of the grid
-	 * @param P The Person on this instant
+	 * 
+	 * @param P    The Person on this instant
 	 * @param Time The current time
 	 */
 	private void MovePeople(People P, int Time) {
 		grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()].setOccupied(P.getId());
 
-		if (P.isInfected() && Math.random()<P.getProbGiveInfection()) {
+		if (P.isInfected() && Math.random() < P.getProbGiveInfection()) {
 			grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()].setInfected(true);
 			grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()].setLastOccuppied(Time);
 
@@ -389,17 +390,15 @@ public class Grid {
 	 */
 	private void InfectByHuman(People P) {
 
-		
-			infectUp(P);
-			infectDown(P);
-			infectRight(P);
-			infectLeft(P);
-			infectDownRight(P);
-			infectUpRight(P);
-			infectDownLeft(P);
-			infectUpLeft(P);
+		infectUp(P);
+		infectDown(P);
+		infectRight(P);
+		infectLeft(P);
+		infectDownRight(P);
+		infectUpRight(P);
+		infectDownLeft(P);
+		infectUpLeft(P);
 
-		
 	}
 
 	/**
@@ -590,7 +589,7 @@ public class Grid {
 	 * This method disinfects an object when 20 minutes pass from the last time it
 	 * was occupied.
 	 * 
-	 * @param T	Current time
+	 * @param T Current time
 	 */
 	public void Disinfect(int T) {
 		for (int i = 0; i < grid.length; i++)
@@ -611,6 +610,38 @@ public class Grid {
 		int c = 0;
 		for (int i = 0; i < people.length; i++)
 			if (people[i].isInfected())
+				c++;
+		return c;
+	}
+
+	public int getHealthyPeople() {
+		int c = 0;
+		for (int i = 0; i < people.length; i++)
+			if (!people[i].isInfected())
+				c++;
+		return c;
+	}
+
+	public int getImmunePeople() {
+		int c = 0;
+		for (int i = 0; i < people.length; i++)
+			if (people[i].isImmune())
+				c++;
+		return c;
+	}
+
+	public int getHealthyWithoutProtectionPeople() {
+		int c = 0;
+		for (int i = 0; i < people.length; i++)
+			if (!people[i].isInfected() && !people[i].hasProtection())
+				c++;
+		return c;
+	}
+
+	public int getInfectedWithProtectionPeople() {
+		int c = 0;
+		for (int i = 0; i < people.length; i++)
+			if (people[i].isInfected() && people[i].hasProtection())
 				c++;
 		return c;
 	}
