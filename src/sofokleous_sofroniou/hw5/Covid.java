@@ -20,6 +20,7 @@ public class Covid {
 
 	public static void main(String[] args) {
 
+		// int infectedPopulation = 1;
 		try {
 
 			StdOut.println("Give time for simulation: ");
@@ -52,12 +53,15 @@ public class Covid {
 			int infectedPopulation = StdIn.readInt();
 
 			while (infectedPopulation > population || infectedPopulation <= 0) {
-				if (infectedPopulation > population)
+				if (infectedPopulation <= 0) {
+					StdOut.println("Infected population value has been reset to default");
+					infectedPopulation = 1;}
+
+				if (infectedPopulation > population) {
 					StdOut.println("Infected population can not be bigger than the population.");
-				if (infectedPopulation <= 0)
-					StdOut.println("Infected population should be grater than 0");
-				StdOut.println("Give infected population: ");
-				infectedPopulation = StdIn.readInt();
+					StdOut.println("Give infected population: ");
+					infectedPopulation = StdIn.readInt();
+				}
 
 			}
 
