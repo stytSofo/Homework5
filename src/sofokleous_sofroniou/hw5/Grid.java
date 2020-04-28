@@ -50,7 +50,7 @@ public class Grid {
 		this.DrawGrid = new DrawGrid(width, height);
 		this.width = width;
 		this.height = height;
-		this.grid = new Cell[N][N];
+		this.grid = new Cell[height][width];
 		InitialiseGrid();
 		this.population = population;
 		Time = T;
