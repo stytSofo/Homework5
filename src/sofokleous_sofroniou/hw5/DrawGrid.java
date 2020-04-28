@@ -79,5 +79,4 @@ public class DrawGrid {
 	public static void waitFrame() {
 		StdDraw.show(50);
 	}
-
 }
