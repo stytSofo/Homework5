@@ -1,6 +1,8 @@
 package sofokleous_sofroniou.hw5;
 
 import java.awt.Color;
+import java.util.ArrayList;
+
 import edu.princeton.cs.introcs.StdDraw;
 import edu.princeton.cs.introcs.StdOut;
 
@@ -15,7 +17,7 @@ public class Grid {
 
 	private Cell[][] grid;
 	private int N;
-	private People[] people;
+	private ArrayList<People> people;
 	private int Time;
 	private int population;
 
@@ -49,25 +51,26 @@ public class Grid {
 		this.population = population;
 		Time = T;
 
-		people = new People[population];
+		
+		people = new ArrayList(population);
 
 		for (int i = 0; i < infectedPopulation; i++) {
 			Point position = findRandomPosition();
-			people[i] = new People(true, position, probToHaveProtection, probGiveInfectionWithProtection,
+			people.add( new People(true, position, probToHaveProtection, probGiveInfectionWithProtection,
 					probGiveInfectionWithoutProtection, probGetInfectionWithProtection,
-					probGetInfectionWithoutProtection, 0, i);
+					probGetInfectionWithoutProtection, 0, i));
 			grid[(int) position.getX()][(int) position.getY()] = new Cell(i, true, probCellToGiveInfection, 0);
-			DrawGrid.drawPeople((int) people[i].getPosition().getX(), (int) (people[i].getPosition().getY()),
+			DrawGrid.drawPeople((int) people.get(i).getPosition().getX(), (int) (people.get(i).getPosition().getY()),
 					StdDraw.RED);
 		}
 
 		for (int i = infectedPopulation; i < population; i++) {
 			Point position = findRandomPosition();
-			people[i] = new People(false, position, probToHaveProtection, probGiveInfectionWithProtection,
+			people.add( new People(false, position, probToHaveProtection, probGiveInfectionWithProtection,
 					probGiveInfectionWithoutProtection, probGetInfectionWithProtection,
-					probGetInfectionWithoutProtection, probToBeImmune, i);
+					probGetInfectionWithoutProtection, probToBeImmune, i));
 			grid[(int) position.getX()][(int) position.getY()] = new Cell(i, false, probCellToGiveInfection, 0);
-			DrawGrid.drawPeople((int) people[i].getPosition().getX(), (int) (people[i].getPosition().getY()),
+			DrawGrid.drawPeople((int) people.get(i).getPosition().getX(), (int) (people.get(i).getPosition().getY()),
 					StdDraw.GREEN);
 		}
 
@@ -104,33 +107,33 @@ public class Grid {
 	 */
 	public void move(int Time) {
 		Disinfect(Time);
-		for (int i = 0; i < people.length; i++) {
+		for (int i = 0; i < people.size(); i++) {
 
 			int move_prob = (int) (Math.random() * 8);
 
-			if (move_prob == 0 && canMoveUp(people[i])) {
-				MovePeople(people[i], Time);
-			} else if (move_prob == 1 && canMoveDown(people[i])) {
-				MovePeople(people[i], Time);
-			} else if (move_prob == 2 && canMoveRight(people[i])) {
-				MovePeople(people[i], Time);
-			} else if (move_prob == 3 && canMoveLeft(people[i])) {
-				MovePeople(people[i], Time);
-			} else if (move_prob == 4 && canMoveDiagUpLeft(people[i])) {
-				MovePeople(people[i], Time);
-			} else if (move_prob == 5 && canMoveDiagUpRight(people[i])) {
-				MovePeople(people[i], Time);
-			} else if (move_prob == 6 && canMoveDiagDownLeft(people[i])) {
-				MovePeople(people[i], Time);
-			} else if (move_prob == 7 && canMoveDiagDownRight(people[i])) {
-				MovePeople(people[i], Time);
+			if (move_prob == 0 && canMoveUp(people.get(i))) {
+				MovePeople(people.get(i), Time);
+			} else if (move_prob == 1 && canMoveDown(people.get(i))) {
+				MovePeople(people.get(i), Time);
+			} else if (move_prob == 2 && canMoveRight(people.get(i))) {
+				MovePeople(people.get(i), Time);
+			} else if (move_prob == 3 && canMoveLeft(people.get(i))) {
+				MovePeople(people.get(i), Time);
+			} else if (move_prob == 4 && canMoveDiagUpLeft(people.get(i))) {
+				MovePeople(people.get(i), Time);
+			} else if (move_prob == 5 && canMoveDiagUpRight(people.get(i))) {
+				MovePeople(people.get(i), Time);
+			} else if (move_prob == 6 && canMoveDiagDownLeft(people.get(i))) {
+				MovePeople(people.get(i), Time);
+			} else if (move_prob == 7 && canMoveDiagDownRight(people.get(i))) {
+				MovePeople(people.get(i), Time);
 			} else {
-				MovePeople(people[i], Time);
+				MovePeople(people.get(i), Time);
 			}
 
-			InfectByHuman(people[i]);
+			InfectByHuman(people.get(i));
 
-			Draw(people[i]);
+			Draw(people.get(i));
 
 		}
 	}
@@ -414,10 +417,10 @@ public class Grid {
 
 			if (n != -1) {
 				if (P.isInfected()) {
-					if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
-						people[n].Infect();
-				} else if (people[n].isInfected()) {
-					if (Math.random() < P.getProbGetInfection() * people[n].getProbGiveInfection())
+					if (Math.random() < P.getProbGiveInfection() * people.get(n).getProbGetInfection())
+						people.get(n).Infect();
+				} else if (people.get(n).isInfected()) {
+					if (Math.random() < P.getProbGetInfection() * people.get(n).getProbGiveInfection())
 						P.Infect();
 				}
 			}
@@ -437,10 +440,10 @@ public class Grid {
 
 			if (n != -1) {
 				if (P.isInfected()) {
-					if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
-						people[n].Infect();
-				} else if (people[n].isInfected()) {
-					if (Math.random() < P.getProbGetInfection() * people[n].getProbGiveInfection())
+					if (Math.random() < P.getProbGiveInfection() * people.get(n).getProbGetInfection())
+						people.get(n).Infect();
+				} else if (people.get(n).isInfected()) {
+					if (Math.random() < P.getProbGetInfection() * people.get(n).getProbGiveInfection())
 						P.Infect();
 				}
 			}
@@ -460,10 +463,10 @@ public class Grid {
 
 			if (n != -1) {
 				if (P.isInfected()) {
-					if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
-						people[n].Infect();
-				} else if (people[n].isInfected()) {
-					if (Math.random() < P.getProbGetInfection() * people[n].getProbGiveInfection())
+					if (Math.random() < P.getProbGiveInfection() * people.get(n).getProbGetInfection())
+						people.get(n).Infect();
+				} else if (people.get(n).isInfected()) {
+					if (Math.random() < P.getProbGetInfection() * people.get(n).getProbGiveInfection())
 						P.Infect();
 				}
 			}
@@ -483,10 +486,10 @@ public class Grid {
 
 			if (n != -1) {
 				if (P.isInfected()) {
-					if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
-						people[n].Infect();
-				} else if (people[n].isInfected()) {
-					if (Math.random() < P.getProbGetInfection() * people[n].getProbGiveInfection())
+					if (Math.random() < P.getProbGiveInfection() * people.get(n).getProbGetInfection())
+						people.get(n).Infect();
+				} else if (people.get(n).isInfected()) {
+					if (Math.random() < P.getProbGetInfection() * people.get(n).getProbGiveInfection())
 						P.Infect();
 				}
 			}
@@ -506,10 +509,10 @@ public class Grid {
 
 			if (n != -1) {
 				if (P.isInfected()) {
-					if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
-						people[n].Infect();
-				} else if (people[n].isInfected()) {
-					if (Math.random() < P.getProbGetInfection() * people[n].getProbGiveInfection())
+					if (Math.random() < P.getProbGiveInfection() * people.get(n).getProbGetInfection())
+						people.get(n).Infect();
+				} else if (people.get(n).isInfected()) {
+					if (Math.random() < P.getProbGetInfection() * people.get(n).getProbGiveInfection())
 						P.Infect();
 				}
 			}
@@ -529,10 +532,10 @@ public class Grid {
 
 			if (n != -1) {
 				if (P.isInfected()) {
-					if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
-						people[n].Infect();
-				} else if (people[n].isInfected()) {
-					if (Math.random() < P.getProbGetInfection() * people[n].getProbGiveInfection())
+					if (Math.random() < P.getProbGiveInfection() * people.get(n).getProbGetInfection())
+						people.get(n).Infect();
+				} else if (people.get(n).isInfected()) {
+					if (Math.random() < P.getProbGetInfection() * people.get(n).getProbGiveInfection())
 						P.Infect();
 				}
 			}
@@ -552,10 +555,10 @@ public class Grid {
 
 			if (n != -1) {
 				if (P.isInfected()) {
-					if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
-						people[n].Infect();
-				} else if (people[n].isInfected()) {
-					if (Math.random() < P.getProbGetInfection() * people[n].getProbGiveInfection())
+					if (Math.random() < P.getProbGiveInfection() * people.get(n).getProbGetInfection())
+						people.get(n).Infect();
+				} else if (people.get(n).isInfected()) {
+					if (Math.random() < P.getProbGetInfection() * people.get(n).getProbGiveInfection())
 						P.Infect();
 				}
 			}
@@ -575,10 +578,10 @@ public class Grid {
 
 			if (n != -1) {
 				if (P.isInfected()) {
-					if (Math.random() < P.getProbGiveInfection() * people[n].getProbGetInfection())
-						people[n].Infect();
-				} else if (people[n].isInfected()) {
-					if (Math.random() < P.getProbGetInfection() * people[n].getProbGiveInfection())
+					if (Math.random() < P.getProbGiveInfection() * people.get(n) .getProbGetInfection())
+						people.get(n).Infect();
+				} else if (people.get(n).isInfected()) {
+					if (Math.random() < P.getProbGetInfection() * people.get(n).getProbGiveInfection())
 						P.Infect();
 				}
 			}
@@ -608,40 +611,40 @@ public class Grid {
 	 */
 	public int getInfectedPeople() {
 		int c = 0;
-		for (int i = 0; i < people.length; i++)
-			if (people[i].isInfected())
+		for (int i = 0; i < people.size(); i++)
+			if (people.get(i).isInfected())
 				c++;
 		return c;
 	}
 
 	public int getHealthyPeople() {
 		int c = 0;
-		for (int i = 0; i < people.length; i++)
-			if (!people[i].isInfected())
+		for (int i = 0; i < people.size(); i++)
+			if (!people.get(i).isInfected())
 				c++;
 		return c;
 	}
 
 	public int getImmunePeople() {
 		int c = 0;
-		for (int i = 0; i < people.length; i++)
-			if (people[i].isImmune())
+		for (int i = 0; i < people.size(); i++)
+			if (people.get(i).isImmune())
 				c++;
 		return c;
 	}
 
 	public int getHealthyWithoutProtectionPeople() {
 		int c = 0;
-		for (int i = 0; i < people.length; i++)
-			if (!people[i].isInfected() && !people[i].hasProtection())
+		for (int i = 0; i < people.size(); i++)
+			if (!people.get(i).isInfected() && !people.get(i).hasProtection())
 				c++;
 		return c;
 	}
 
 	public int getInfectedWithProtectionPeople() {
 		int c = 0;
-		for (int i = 0; i < people.length; i++)
-			if (people[i].isInfected() && people[i].hasProtection())
+		for (int i = 0; i < people.size(); i++)
+			if (people.get(i).isInfected() && people.get(i).hasProtection())
 				c++;
 		return c;
 	}
