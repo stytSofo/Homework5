@@ -27,6 +27,7 @@ public class Grid {
 	 * Constructor for grid.
 	 * 
 	 * @param width                              Width of the grid.
+	 * @param height                             Height of the grid.
 	 * @param infectedPopulation                 How many infected people.
 	 * @param population                         How many people in total.
 	 * @param probToHaveProtection               The probability to have protection.
@@ -83,7 +84,7 @@ public class Grid {
 	 * This method initializes the grid with the default cells.
 	 */
 	public void InitialiseGrid() {
-		for (int row = 0; row < this.width; row++)
+		for (int row = 0; row < this.height; row++)
 			for (int col = 0; col < this.width; col++)
 				grid[row][col] = new Cell();
 	}
@@ -97,7 +98,7 @@ public class Grid {
 		int x, y;
 		do {
 			x = (int) ((Math.random()) * this.width);
-			y = (int) ((Math.random()) * this.width);
+			y = (int) ((Math.random()) * this.height);
 		} while (grid[x][y].isOccupied() != -1);
 		return new Point(x, y);
 	}
@@ -152,7 +153,7 @@ public class Grid {
 		int X = (int) p.getPosition().getX();
 		int Y = (int) p.getPosition().getY();
 
-		if (Y + 1 >= width)
+		if (Y + 1 >= height)
 			return false;
 		if (grid[X][Y + 1].isOccupied() != -1)
 			return false;
@@ -248,7 +249,7 @@ public class Grid {
 		int X = (int) p.getPosition().getX();
 		int Y = (int) p.getPosition().getY();
 
-		if (X - 1 < 0 || Y + 1 >= width)
+		if (X - 1 < 0 || Y + 1 >= height)
 			return false;
 		if (grid[X - 1][Y + 1].isOccupied() != -1)
 			return false;
@@ -272,7 +273,7 @@ public class Grid {
 		int X = (int) p.getPosition().getX();
 		int Y = (int) p.getPosition().getY();
 
-		if (X + 1 >= width || Y + 1 >= width)
+		if (X + 1 >= width || Y + 1 >= height)
 			return false;
 		if (grid[X + 1][Y + 1].isOccupied() != -1)
 			return false;
@@ -415,7 +416,7 @@ public class Grid {
 	 * @param P The person that gets infected/infects others
 	 */
 	private void infectUp(People P) {
-		if (P.getPosition().getY() != width - 1) {
+		if (P.getPosition().getY() != height - 1) {
 			int n = grid[(int) P.getPosition().getX()][(int) P.getPosition().getY() + 1].isOccupied();
 
 			if (n != -1) {
@@ -507,7 +508,7 @@ public class Grid {
 	 * @param P The person that gets infected/infects others
 	 */
 	private void infectUpLeft(People P) {
-		if ((P.getPosition().getX() != 0) && (P.getPosition().getY() != width - 1)) {
+		if ((P.getPosition().getX() != 0) && (P.getPosition().getY() != height - 1)) {
 			int n = grid[(int) P.getPosition().getX() - 1][(int) P.getPosition().getY() + 1].isOccupied();
 
 			if (n != -1) {
@@ -530,7 +531,7 @@ public class Grid {
 	 * @param P The person that gets infected/infects others
 	 */
 	private void infectUpRight(People P) {
-		if ((P.getPosition().getX() != width - 1) && (P.getPosition().getY() != width - 1)) {
+		if ((P.getPosition().getX() != width - 1) && (P.getPosition().getY() != height - 1)) {
 			int n = grid[(int) P.getPosition().getX() + 1][(int) P.getPosition().getY() + 1].isOccupied();
 
 			if (n != -1) {
