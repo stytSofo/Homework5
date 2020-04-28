@@ -26,7 +26,7 @@ public class Grid {
 	/**
 	 * Constructor for grid.
 	 * 
-	 * @param N                                  Length of the grid.
+	 * @param width                              Width of the grid.
 	 * @param infectedPopulation                 How many infected people.
 	 * @param population                         How many people in total.
 	 * @param probToHaveProtection               The probability to have protection.
