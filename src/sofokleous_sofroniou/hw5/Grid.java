@@ -49,9 +49,9 @@ public class Grid {
 			double probCellToGiveInfection, int T) {
 
 		this.DrawGrid = new DrawGrid(width, height);
-		this.width = width;
-		this.height = height;
-		this.grid = new Cell[height][width];
+		this.width = width-1;
+		this.height = height-1;
+		this.grid = new Cell[this.height][this.width];
 		InitialiseGrid();
 		this.population = population;
 		Time = T;

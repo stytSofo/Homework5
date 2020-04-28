@@ -20,7 +20,6 @@ public class Covid {
 
 	public static void main(String[] args) {
 
-		// int infectedPopulation = 1;
 		try {
 
 			StdOut.println("Give time for simulation: ");
@@ -30,18 +29,26 @@ public class Covid {
 				Time = StdIn.readInt();
 			}
 
-			StdOut.println("Give grid length: ");
-			int N = StdIn.readInt();
-			while (N <= 1) {
-				StdOut.println("The length of the grid should be greater than 1");
-				StdOut.println("Give grid length: ");
-				N = StdIn.readInt();
+			StdOut.println("Give grid width: ");
+			int width = StdIn.readInt();
+			while (width <= 1) {
+				StdOut.println("The width of the grid should be greater than 1");
+				StdOut.println("Give grid width: ");
+				width = StdIn.readInt();
+			}
+			
+			StdOut.println("Give grid height: ");
+			int height = StdIn.readInt();
+			while (height <= 1) {
+				StdOut.println("The height of the grid should be greater than 1");
+				StdOut.println("Give grid height: ");
+				height = StdIn.readInt();
 			}
 
 			StdOut.println("Give population: ");
 			int population = StdIn.readInt();
-			while (population > (N + 1) * (N + 1) || population <= 0) {
-				if (population > N * N)
+			while (population > (height + 1) * (width + 1) || population <= 0) {
+				if (population > height * width)
 					StdOut.println("Population can not be bigger than the area of the grid.");
 				if (population <= 0)
 					StdOut.println("Population should be a positive number");
@@ -146,7 +153,7 @@ public class Covid {
 
 		
 
-			Grid grid = new Grid(N + 1, infectedPopulation, population, probToHaveProtection,
+			Grid grid = new Grid(width + 1, height + 1, infectedPopulation, population, probToHaveProtection,
 					probGiveInfectionWithProtection, probGiveInfectionWithoutProtection, probGetInfectionWithProtection,
 					probGetInfectionWithoutProtection, probToBeImmune, probCellToGiveInfection, TimeDis);
 
