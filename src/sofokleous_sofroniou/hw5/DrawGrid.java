@@ -13,24 +13,32 @@ import edu.princeton.cs.introcs.StdDraw;
  * @date 13/04/2020
  */
 public class DrawGrid {
-	static int I;
+	private int X;
+	private int Y;
 
 	/**
 	 * Method to draw the grid representing the space where people will move
 	 * 
 	 * @param N Size of the grid
 	 */
-	public static void DrawFrame(int N) {
-		int draw = N + 1;
-		I = draw;
+	public DrawGrid(int X, int Y) {
+		int drawX = X + 1;
+		int drawY = Y + 1;
+		this.X = drawX;
+		this.Y = drawY;
+		StdDraw.enableDoubleBuffering();
 		StdDraw.setCanvasSize(1000, 1000);
-		StdDraw.setXscale(0, draw);
-		StdDraw.setYscale(0, draw);
-		for (int i = 0; i < draw; i++) {
-			StdDraw.line(i, 0, i, draw);
-			StdDraw.line(0, i, draw, i);
+		StdDraw.setXscale(0, X);
+		StdDraw.setYscale(0, Y);
+
+		for (int i = 0; i < X; i++) {
+			StdDraw.line(i, 0, i, Y);
 		}
 
+		for (int i = 0; i < Y; i++) {
+			StdDraw.line(0, i, X, i);
+		}
+		StdDraw.disableDoubleBuffering();
 	}
 
 	/**
@@ -39,9 +47,9 @@ public class DrawGrid {
 	 * @param x X coordinate of a person
 	 * @param y Y coordinate of a person
 	 */
-	public static void drawPeople(int x, int y) {
+	public void drawPeople(int x, int y) {
 		StdDraw.setPenColor();
-		StdDraw.setPenRadius(1.1 / I);
+		StdDraw.setPenRadius(1.1 / X);
 		StdDraw.point(x + 0.5, y + 0.5);
 
 	}
@@ -53,9 +61,9 @@ public class DrawGrid {
 	 * @param y     Y coordinate of a person
 	 * @param color Color of the point
 	 */
-	public static void drawPeople(int x, int y, Color color) {
+	public void drawPeople(int x, int y, Color color) {
 		StdDraw.setPenColor(color);
-		StdDraw.setPenRadius(1.1 / I);
+		StdDraw.setPenRadius(1.1 / X);
 		StdDraw.point(x + 0.5, y + 0.5);
 
 	}
@@ -66,9 +74,9 @@ public class DrawGrid {
 	 * @param x X coordinate of a person
 	 * @param y Y coordinate of a person
 	 */
-	public static void removePeople(int x, int y) {
+	public void removePeople(int x, int y) {
 		StdDraw.setPenColor(StdDraw.WHITE);
-		StdDraw.setPenRadius(1.2 / I);
+		StdDraw.setPenRadius(1.2 / X);
 		StdDraw.point(x + 0.5, y + 0.5);
 
 	}
@@ -79,4 +87,5 @@ public class DrawGrid {
 	public static void waitFrame() {
 		StdDraw.show(50);
 	}
+
 }
