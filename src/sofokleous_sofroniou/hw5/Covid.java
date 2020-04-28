@@ -144,9 +144,7 @@ public class Covid {
 				TimeDis = StdIn.readInt();
 			}
 
-			DrawGrid.DrawFrame(N);
-
-			DrawGrid.waitFrame();
+		
 
 			Grid grid = new Grid(N + 1, infectedPopulation, population, probToHaveProtection,
 					probGiveInfectionWithProtection, probGiveInfectionWithoutProtection, probGetInfectionWithProtection,
