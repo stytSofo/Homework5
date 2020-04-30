@@ -388,8 +388,8 @@ public class Grid {
 
 		}
 		
-		if(grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()].isPortal) {
-			P.teleport(grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()].getGrid);
+		if(grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()].isPortal()) {
+			P.teleport(grid[(int) P.getPosition().getX()][(int) P.getPosition().getY()].getGrid());
 			this.removePerson(P);
 		}
 

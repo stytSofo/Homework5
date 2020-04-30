@@ -14,6 +14,7 @@ public class Cell {
 	private double probGiveInfection;
 	private int lastOccuppied;
 	private boolean isPortal;
+	private Grid G;
 
 	/**
 	 * Constructor of a cell.
@@ -68,6 +69,10 @@ public class Cell {
 	 */
 	public void setOccupied(int occupied) {
 		this.occupied = occupied;
+	}
+	
+	public Grid getGrid() {
+		return this.G;
 	}
 
 	/**

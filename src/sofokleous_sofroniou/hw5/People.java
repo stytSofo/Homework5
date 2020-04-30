@@ -159,5 +159,10 @@ public class People {
 	public int getId() {
 		return id;
 	}
+	
+	public void teleport(Grid G) {
+		G.addPerson(this);
+		
+	}
 
 }
