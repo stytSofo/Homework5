@@ -13,6 +13,7 @@ public class Cell {
 	private boolean infected;
 	private double probGiveInfection;
 	private int lastOccuppied;
+	private boolean isPortal;
 
 	/**
 	 * Constructor of a cell.
@@ -50,6 +51,14 @@ public class Cell {
 	 */
 	public int isOccupied() {
 		return occupied;
+	}
+	
+	/**
+	 * 
+	 * @return True if the cell is a portal to another Grid_Area
+	 */
+	public boolean isPortal() {
+		return this.isPortal;
 	}
 
 	/**
