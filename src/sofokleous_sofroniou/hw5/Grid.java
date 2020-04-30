@@ -697,6 +697,10 @@ public class Grid {
 	public void addPerson(People p) {
 		people.add(p);
 		population++;
+		p.setPosition(this.findRandomPosition());
+		DrawGrid.drawPeople((int)p.getPosition().getX(),(int) p.getPosition().getY());
+		
+		
 	}
 
 }
