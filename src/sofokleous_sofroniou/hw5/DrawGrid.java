@@ -48,7 +48,7 @@ public class DrawGrid {
 	 * @param x X coordinate of a person
 	 * @param y Y coordinate of a person
 	 */
-	public void drawPeople(int x, int y) {
+	public void drawPeople(int y, int x) {
 		StdDraw.setPenColor();
 		StdDraw.setPenRadius(1.1 / X);
 		StdDraw.point(x + 0.5, y + 0.5);
@@ -62,7 +62,7 @@ public class DrawGrid {
 	 * @param y     Y coordinate of a person
 	 * @param color Color of the point
 	 */
-	public void drawPeople(int x, int y, Color color) {
+	public void drawPeople(int y, int x, Color color) {
 		StdDraw.setPenColor(color);
 		StdDraw.setPenRadius(1.1 / X);
 		StdDraw.point(x + 0.5, y + 0.5);
@@ -75,7 +75,7 @@ public class DrawGrid {
 	 * @param x X coordinate of a person
 	 * @param y Y coordinate of a person
 	 */
-	public void removePeople(int x, int y) {
+	public void removePeople(int y, int x) {
 		StdDraw.setPenColor(StdDraw.WHITE);
 		StdDraw.setPenRadius(1.2 / X);
 		StdDraw.point(x + 0.5, y + 0.5);
