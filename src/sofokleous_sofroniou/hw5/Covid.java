@@ -20,6 +20,13 @@ public class Covid {
 
 	public static void main(String[] args) {
 
+		Grid Grid[] = null;
+		int infectedPeople = 0;
+		int healthyPeople = 0;
+		int immunePeople = 0;
+		int HealthyWithoutProtectionPeople = 0;
+		int InfectedWithProtectionPeople = 0;
+
 		try {
 
 			StdOut.println("Give time for simulation: ");
@@ -27,49 +34,6 @@ public class Covid {
 			while (Time <= 0) {
 				StdOut.println("Give correct time");
 				Time = StdIn.readInt();
-			}
-
-			StdOut.println("Give grid width: ");
-			int width = StdIn.readInt();
-			while (width <= 1) {
-				StdOut.println("The width of the grid should be greater than 1");
-				StdOut.println("Give grid width: ");
-				width = StdIn.readInt();
-			}
-			
-			StdOut.println("Give grid height: ");
-			int height = StdIn.readInt();
-			while (height <= 1) {
-				StdOut.println("The height of the grid should be greater than 1");
-				StdOut.println("Give grid height: ");
-				height = StdIn.readInt();
-			}
-
-			StdOut.println("Give population: ");
-			int population = StdIn.readInt();
-			while (population > (height + 1) * (width + 1) || population <= 0) {
-				if (population > height * width)
-					StdOut.println("Population can not be bigger than the area of the grid.");
-				if (population <= 0)
-					StdOut.println("Population should be a positive number");
-				StdOut.println("Give population: ");
-				population = StdIn.readInt();
-			}
-
-			StdOut.println("Give infected population: ");
-			int infectedPopulation = StdIn.readInt();
-
-			while (infectedPopulation > population || infectedPopulation <= 0) {
-				if (infectedPopulation <= 0) {
-					StdOut.println("Infected population value has been reset to default");
-					infectedPopulation = 1;}
-
-				if (infectedPopulation > population) {
-					StdOut.println("Infected population can not be bigger than the population.");
-					StdOut.println("Give infected population: ");
-					infectedPopulation = StdIn.readInt();
-				}
-
 			}
 
 			StdOut.println("Give probability of having protection: ");
@@ -147,27 +111,87 @@ public class Covid {
 			StdOut.println("Give time to disinfect the grid: ");
 			int TimeDis = StdIn.readInt();
 			while (TimeDis <= 0) {
-				StdOut.println("Give correct time");
+				StdOut.println("Time should be positive");
+				StdOut.println("Give time to disinfect the grid: ");
 				TimeDis = StdIn.readInt();
 			}
 
-		
-
-			Grid grid = new Grid(width + 1, height + 1, infectedPopulation, population, probToHaveProtection,
-					probGiveInfectionWithProtection, probGiveInfectionWithoutProtection, probGetInfectionWithProtection,
-					probGetInfectionWithoutProtection, probToBeImmune, probCellToGiveInfection, TimeDis);
-
-			for (int i = 1; i < Time; i++) {
-				grid.move(i);
-
-				DrawGrid.waitFrame();
+			StdOut.println("Give number of grids: ");
+			int gridsNum = StdIn.readInt();
+			while (gridsNum < 1) {
+				StdOut.println("Number of grids should be positive");
+				StdOut.println("Give number of grids: ");
+				gridsNum = StdIn.readInt();
 			}
 
-			StdOut.println("Total infected people: " + grid.getInfectedPeople());
-			StdOut.println("Total healthy people: " + grid.getHealthyPeople());
-			StdOut.println("Total immune people: " + grid.getImmunePeople());
-			StdOut.println("Total healthy people without protection : " + grid.getHealthyWithoutProtectionPeople());
-			StdOut.println("Total infected people with protection : " + grid.getInfectedWithProtectionPeople());
+			for (int i = 0; i < gridsNum; i++) {
+
+				StdOut.println("Give grid number " + i + " width: ");
+				int width = StdIn.readInt();
+				while (width <= 1) {
+					StdOut.println("The width of the grid should be greater than 1");
+					StdOut.println("Give grid number " + i + "  width: ");
+					width = StdIn.readInt();
+				}
+
+				StdOut.println("Give grid number " + i + "  height: ");
+				int height = StdIn.readInt();
+				while (height <= 1) {
+					StdOut.println("The height of the grid should be greater than 1");
+					StdOut.println("Give grid number " + i + "  height: ");
+					height = StdIn.readInt();
+				}
+
+				StdOut.println("Give grid number " + i + "  population: ");
+				int population = StdIn.readInt();
+				while (population > (height + 1) * (width + 1) || population <= 0) {
+					if (population > height * width)
+						StdOut.println("Population can not be bigger than the area of the grid.");
+					if (population <= 0)
+						StdOut.println("Population should be a positive number");
+					StdOut.println("Give grid  number " + i + "  population: ");
+					population = StdIn.readInt();
+				}
+
+				StdOut.println("Give grid number " + i + "  infected population: ");
+				int infectedPopulation = StdIn.readInt();
+
+				while (infectedPopulation > population || infectedPopulation <= 0)
+					if (infectedPopulation <= 0) {
+						StdOut.println("Infected population value has been reset to default");
+						infectedPopulation = 1;
+					}
+
+				Grid[i] = new Grid(width + 1, height + 1, infectedPopulation, population, probToHaveProtection,
+						probGiveInfectionWithProtection, probGiveInfectionWithoutProtection,
+						probGetInfectionWithProtection, probGetInfectionWithoutProtection, probToBeImmune,
+						probCellToGiveInfection, TimeDis);
+
+				for (int c = 1; i < Time; c++) {
+					Grid[i].move(c);
+
+					DrawGrid.waitFrame();
+				}
+
+				StdOut.println("Infected people of grid " + i + " : " + Grid[i].getInfectedPeople());
+				infectedPeople += Grid[i].getInfectedPeople();
+				StdOut.println("Healthy people of grid " + i + ": " + Grid[i].getHealthyPeople());
+				healthyPeople += Grid[i].getHealthyPeople();
+				StdOut.println("Immune people of grid " + i + ": " + Grid[i].getImmunePeople());
+				immunePeople += Grid[i].getImmunePeople();
+				StdOut.println("Healthy people without protection of grid " + i + " : "
+						+ Grid[i].getHealthyWithoutProtectionPeople());
+				HealthyWithoutProtectionPeople += Grid[i].getHealthyWithoutProtectionPeople();
+				StdOut.println("Infected people with protection of grid " + i + " : "
+						+ Grid[i].getInfectedWithProtectionPeople());
+				InfectedWithProtectionPeople += Grid[i].getInfectedWithProtectionPeople();
+			}
+
+			StdOut.println("Total infected people: " + infectedPeople);
+			StdOut.println("Total healthy people: " + healthyPeople);
+			StdOut.println("Total immune people: " + immunePeople);
+			StdOut.println("Total healthy people without protection : " + HealthyWithoutProtectionPeople);
+			StdOut.println("Total infected people with protection : " + InfectedWithProtectionPeople);
 
 		} catch (InputMismatchException e) {
 			System.out.println(e.getMessage());
