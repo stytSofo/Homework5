@@ -50,8 +50,8 @@ public class Grid {
 			double probCellToGiveInfection, int Time) {
 
 		this.DrawGrid = new DrawGrid(width, height);
-		this.width = width - 1;
-		this.height = height - 1;
+		this.width = width ;
+		this.height = height ;
 		this.grid = new Cell[this.height][this.width];
 		InitialiseGrid();
 		this.population = population;
@@ -98,8 +98,8 @@ public class Grid {
 	public Point findRandomPosition() {
 		int x, y;
 		do {
-			x = (int) ((Math.random()) * this.width);
-			y = (int) ((Math.random()) * this.height);
+			x = (int) ((Math.random()) * (this.height));
+			y = (int) ((Math.random()) * (this.width));
 		} while (grid[x][y].isOccupied() != -1);
 		return new Point(x, y);
 	}

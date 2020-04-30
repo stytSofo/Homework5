@@ -152,7 +152,7 @@ public class Covid {
 					StdOut.println("Give grid  number " + i + "  population: ");
 					population = StdIn.readInt();
 				}
-
+				
 				StdOut.println("Give grid number " + i + "  infected population: ");
 				int infectedPopulation = StdIn.readInt();
 
@@ -162,7 +162,7 @@ public class Covid {
 						infectedPopulation = 1;
 					}
 
-				Grid[i] = new Grid(width + 1, height + 1, infectedPopulation, population, probToHaveProtection,
+				Grid[i] = new Grid(width+1, height+1, infectedPopulation, population, probToHaveProtection,
 						probGiveInfectionWithProtection, probGiveInfectionWithoutProtection,
 						probGetInfectionWithProtection, probGetInfectionWithoutProtection, probToBeImmune,
 						probCellToGiveInfection, TimeDis);

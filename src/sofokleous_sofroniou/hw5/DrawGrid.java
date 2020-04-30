@@ -38,6 +38,7 @@ public class DrawGrid {
 		for (int i = 0; i < Y; i++) {
 			StdDraw.line(0, i, X, i);
 		}
+		StdDraw.show();
 		StdDraw.disableDoubleBuffering();
 	}
 
