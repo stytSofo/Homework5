@@ -22,6 +22,7 @@ public class Grid {
 	private int Time;
 	private int population;
 	private DrawGrid DrawGrid;
+	private int gridID;
 
 	/**
 	 * Constructor for grid.
@@ -42,19 +43,21 @@ public class Grid {
 	 * @param probToBeImmune                     The probability to be immune.
 	 * @param probCellToGiveInfection            The probability a cell to infect a
 	 *                                           person.
+	 * @param gridID                             The number of this grid.
 	 */
 	public Grid(int width, int height, int infectedPopulation, int population, double probToHaveProtection,
 			double probGiveInfectionWithProtection, double probGiveInfectionWithoutProtection,
 			double probGetInfectionWithProtection, double probGetInfectionWithoutProtection, double probToBeImmune,
-			double probCellToGiveInfection, int T) {
+			double probCellToGiveInfection, int Time, int gridID) {
 
 		this.DrawGrid = new DrawGrid(width, height);
-		this.width = width-1;
-		this.height = height-1;
+		this.width = width - 1;
+		this.height = height - 1;
 		this.grid = new Cell[this.height][this.width];
 		InitialiseGrid();
 		this.population = population;
-		Time = T;
+		this.Time = Time;
+		this.gridID = gridID;
 
 		people = new ArrayList(population);
 
@@ -62,7 +65,7 @@ public class Grid {
 			Point position = findRandomPosition();
 			people.add(new People(true, position, probToHaveProtection, probGiveInfectionWithProtection,
 					probGiveInfectionWithoutProtection, probGetInfectionWithProtection,
-					probGetInfectionWithoutProtection, 0, i));
+					probGetInfectionWithoutProtection, 0, i, gridID));
 			grid[(int) position.getX()][(int) position.getY()] = new Cell(i, true, probCellToGiveInfection, 0);
 			DrawGrid.drawPeople((int) people.get(i).getPosition().getX(), (int) (people.get(i).getPosition().getY()),
 					StdDraw.RED);
@@ -72,7 +75,7 @@ public class Grid {
 			Point position = findRandomPosition();
 			people.add(new People(false, position, probToHaveProtection, probGiveInfectionWithProtection,
 					probGiveInfectionWithoutProtection, probGetInfectionWithProtection,
-					probGetInfectionWithoutProtection, probToBeImmune, i));
+					probGetInfectionWithoutProtection, probToBeImmune, i, gridID));
 			grid[(int) position.getX()][(int) position.getY()] = new Cell(i, false, probCellToGiveInfection, 0);
 			DrawGrid.drawPeople((int) people.get(i).getPosition().getX(), (int) (people.get(i).getPosition().getY()),
 					StdDraw.GREEN);
@@ -651,6 +654,18 @@ public class Grid {
 			if (people.get(i).isInfected() && people.get(i).hasProtection())
 				c++;
 		return c;
+	}
+	
+	public void removePerson(People p) {
+		people.remove(p);
+		population--;
+	}
+	
+	public void addPerson(People p) {
+		people.add(new People(p.isInfected(), p.getPosition(), p.hasProtection(), p.getProbGetInfection(), p.getProbGiveInfection(), p.isImmune(), p.getId(), gridID));
+		//or implement clone
+		//people.add((People) p.clone());
+		population++;
 	}
 
 }
