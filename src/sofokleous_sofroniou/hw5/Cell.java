@@ -53,7 +53,11 @@ public class Cell {
 	public int isOccupied() {
 		return occupied;
 	}
-	
+
+	public void setGrid(Grid GRID) {
+		this.G = GRID;
+	}
+
 	/**
 	 * 
 	 * @return True if the cell is a portal to another Grid_Area
@@ -70,7 +74,7 @@ public class Cell {
 	public void setOccupied(int occupied) {
 		this.occupied = occupied;
 	}
-	
+
 	public Grid getGrid() {
 		return this.G;
 	}
