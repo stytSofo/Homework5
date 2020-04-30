@@ -74,30 +74,6 @@ public class People {
 
 	}
 
-	/**
-	 * The second constructor of People.
-	 * 
-	 * @param infected          If the human is infected.
-	 * @param position          The initial position of the human.
-	 * @param hasProtection     If the person has protection.
-	 * @param probGiveInfection The probability to infect others.
-	 * @param probGetInfection  The probability to get infection.
-	 * @param immune            If the person is immune.
-	 * @param id                ID - Their position/index in People array list.
-	 * @param grid              The number of grid/area the person is in.
-	 */
-	public People(boolean infected, Point position, boolean hasProtection, double probGetInfection,
-			double probGiveInfection, boolean immune, int id, int grid) {
-
-		this.immune = immune;
-		this.infected = infected;
-		this.position = position;
-		this.hasProtection = hasProtection;
-		this.probGetInfection = probGetInfection;
-		this.probGiveInfection = probGiveInfection;
-		this.id = id;
-		this.grid = grid;
-	}
 
 	/**
 	 * Getter method for Point.

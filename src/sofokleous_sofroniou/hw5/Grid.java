@@ -624,6 +624,11 @@ public class Grid {
 		return c;
 	}
 
+	/**
+	 * This method is a counter for all the healthy/non-infected people.
+	 * 
+	 * @return The number of healthy/non-infected people.
+	 */
 	public int getHealthyPeople() {
 		int c = 0;
 		for (int i = 0; i < people.size(); i++)
@@ -632,6 +637,11 @@ public class Grid {
 		return c;
 	}
 
+	/**
+	 * This method is a counter for all the immune people.
+	 * 
+	 * @return The number of immune people.
+	 */
 	public int getImmunePeople() {
 		int c = 0;
 		for (int i = 0; i < people.size(); i++)
@@ -640,6 +650,11 @@ public class Grid {
 		return c;
 	}
 
+	/**
+	 * This method is a counter for all the healthy people but without protection.
+	 * 
+	 * @return The number of healthy but without protection people.
+	 */
 	public int getHealthyWithoutProtectionPeople() {
 		int c = 0;
 		for (int i = 0; i < people.size(); i++)
@@ -648,6 +663,11 @@ public class Grid {
 		return c;
 	}
 
+	/**
+	 * This method is a counter for all the infected people with protection.
+	 * 
+	 * @return The number of infected people with protection.
+	 */
 	public int getInfectedWithProtectionPeople() {
 		int c = 0;
 		for (int i = 0; i < people.size(); i++)
@@ -655,16 +675,25 @@ public class Grid {
 				c++;
 		return c;
 	}
-	
+
+	/**
+	 * This method removes a person from the grid.
+	 * 
+	 * @param p The person that is going to be deleted.
+	 */
 	public void removePerson(People p) {
 		people.remove(p);
 		population--;
 	}
-	
+
+	/**
+	 * This method adds a person to the grid.
+	 * 
+	 * @param p The person that is going to be added.
+	 */
 	public void addPerson(People p) {
-		people.add(new People(p.isInfected(), p.getPosition(), p.hasProtection(), p.getProbGetInfection(), p.getProbGiveInfection(), p.isImmune(), p.getId(), gridID));
-		//or implement clone
-		//people.add((People) p.clone());
+		p.setGrid(gridID);
+		people.add(p);
 		population++;
 	}
 
