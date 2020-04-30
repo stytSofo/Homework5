@@ -17,7 +17,6 @@ public class People {
 	private double probGetInfection;
 	private boolean immune;
 	private int id;
-	private int grid;
 
 	/**
 	 * The constructor of People.
@@ -37,16 +36,13 @@ public class People {
 	 * @param probToBeImmune                     The probability be immune.
 	 * @param id                                 ID - Their position/index in People
 	 *                                           array list.
-	 * @param grid                               The number of grid/area the person
-	 *                                           is in.
 	 */
 	public People(boolean infected, Point position, double probToHaveProtection, double probGiveInfectionWithProtection,
 			double probGiveInfectionWithoutProtection, double probGetInfectionWithProtection,
-			double probGetInfectionWithoutProtection, double probToBeImmune, int id, int grid) {
+			double probGetInfectionWithoutProtection, double probToBeImmune, int id) {
 
 		this.position = position;
 		this.id = id;
-		this.grid = grid;
 
 		if (Math.random() < probToBeImmune) {
 			this.immune = true;
@@ -162,24 +158,6 @@ public class People {
 	 */
 	public int getId() {
 		return id;
-	}
-
-	/**
-	 * Getter method for the grid number.
-	 * 
-	 * @return The person's grid number.
-	 */
-	public int getGrid() {
-		return grid;
-	}
-
-	/**
-	 * Setter method for the grid number.
-	 * 
-	 * @param grid The person's new grid number.
-	 */
-	public void setGrid(int grid) {
-		this.grid = grid;
 	}
 
 }
